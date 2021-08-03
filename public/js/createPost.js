@@ -76,7 +76,7 @@ const handlePostSubmit = () => {
             title.value = "";
             date.value = "";
             cost.value = "";
-            rating.value = 5;
+            rating.value = "";
             // picture.value = "";
             mood.value = "";
             description.value = "";
