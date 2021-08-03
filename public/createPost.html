@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Food</title>
@@ -16,126 +17,106 @@
     <!-- Local scripts -->
     <script defer src="js/createPost.js"></script>
     <!-- verification of sign-in goes here -->
-  </head>
-  <body>
+</head>
+
+<body>
     <section class="hero is-fullheight">
-      <div class="column has-text-right">
+        <div class="column has-text-right">
             <button class="button is-link has-text-weight-medium is-medium" onclick="logout()">Logout</button>
         </div>
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <div class="columns is-8 is-variable ">
-            <!-- WELCOME HERO -->
-            <div class="column is-two-thirds has-text-left">
-              <h1 class="title is-1">What's on your mind?</h1>
-              <h1 class="title is-3">
-                “The most beautiful things are those that madness prompts and
-                reason writes."
-              </h1>
-              <h1 class="subtitle is-5">
-                —Andre Gide
-              </h1>
-              <a href="/viewNotes.html"
-                ><button
-                  class="button is-link has-text-weight-medium is-medium is-centered"
-                >
-                  Click Here
-                </button></a
-              >
-              to view your notes.
-            </div>
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="columns is-8 is-variable ">
+                    <!-- WELCOME HERO -->
+                    <div class="column is-two-thirds has-text-left">
+                        <h1 class="title is-1">What's on your mind?</h1>
+                        <h1 class="title is-3">
+                            “The most beautiful things are those that madness prompts and
+                            reason writes."
+                        </h1>
+                        <h1 class="subtitle is-5">
+                            —Andre Gide
+                        </h1>
+                        <a href="/viewNotes.html"><button
+                                class="button is-link has-text-weight-medium is-medium is-centered">
+                                Click Here
+                            </button></a>
+                        to view your notes.
+                    </div>
 
-            <!-- NOTE FORM -->
-            <div class="column is-one-third has-text-left">
-              <div class="field">
-                <label class="label">Title</label>
-                <div class="control">
-                  <input class="input is-medium" type="text" id="title" />
-                </div>
-              </div>
-              <div class="field">
-                <label class="label">Date</label>
-                <div class="control">
-                  <input class="input is-medium" 
-                        type="date" data-date-inline-picker="true"  
-                        id="date"
-                        placeholder="">
-                </div>
-              <div class="field">
-                <label class="label">Cost</label>
-                <div class="control">
-                  <input class="input is-medium" 
-                         type = "number"
-                         min = "0"
-                        id="cost"
-                        placeholder="">
-                </div>
-              <div class="field">
-                <label class="label">Rating</label>
-                <div class="control">
-                  <input class="input is-medium" 
-                        type="number"
-                        min = "1"
-                        min = "5" 
-                        id="rating"
-                        placeholder="">
-                </div>
-              <div class="field">
-                <label class="label">Mood</label>
-                <div class="control">
-                  <input class="input is-medium" 
-                        type="text" 
-                        id="mood"
-                        placeholder="">
-                </div>
-              <div class="field">
-                <label class="label">Location</label>
-                <div class="control">
-                  <input class="input is-medium" 
-                        type="text" 
-                        id="location"
-                        placeholder="">
-                </div>
-<div class="field">
-                <label class="label">Other People</label>
-                <div class="control">
-                  <input class="input is-medium" 
-                        type="text" 
-                        id="otherPeople"
-                        placeholder="">
-                </div>
-            </div>
-              <div class="field">
-                <label class="label">Description</label>
-                <div class="control">
-                  <textarea class="textarea is-medium" id="description"></textarea>
-                </div>
-              </div>
-<div class="field">
-                <label class="label">Privacy</label>
-                <div class="control">
-                 <label class="radio">
-    <input type="radio" name="private">
-    Only you
-  </label>
-  <label class="radio">
-    <input type="radio" name="private">
-    Anyone
-  </label>
-</div>
-              <div class="control">
-                  <br>
-                <button
-                  class="button is-link is-fullwidth has-text-weight-medium is-medium"
-                  onclick="handlePostSubmit()"
-                >
-                  Create Post
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                    <!-- NOTE FORM -->
+                    <div class="column is-one-third has-text-left">
+                        <div class="field">
+                            <label class="label">Title</label>
+                            <div class="control">
+                                <input class="input is-medium" type="text" id="title" />
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Date</label>
+                            <div class="control">
+                                <input class="input is-medium" type="date" data-date-inline-picker="true" id="date"
+                                    placeholder="">
+                            </div>
+                            <div class="field">
+                                <label class="label">Cost</label>
+                                <div class="control">
+                                    <input class="input is-medium" type="number" min="0" id="cost" placeholder="">
+                                </div>
+                                <div class="field">
+                                    <label class="label">Rating</label>
+                                    <div class="control">
+                                        <input class="input is-medium" type="number" min="1" min="5" id="rating"
+                                            placeholder="">
+                                    </div>
+                                    <div class="field">
+                                        <label class="label">Mood</label>
+                                        <div class="control">
+                                            <input class="input is-medium" type="text" id="mood" placeholder="">
+                                        </div>
+                                        <div class="field">
+                                            <label class="label">Location</label>
+                                            <div class="control">
+                                                <input class="input is-medium" type="text" id="location" placeholder="">
+                                            </div>
+                                            <div class="field">
+                                                <label class="label">Other People</label>
+                                                <div class="control">
+                                                    <input class="input is-medium" type="text" id="otherPeople"
+                                                        placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <label class="label">Description</label>
+                                                <div class="control">
+                                                    <textarea class="textarea is-medium" id="description"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <label class="label">Privacy</label>
+                                                <div class="control">
+                                                    <label class="radio">
+                                                        <input type="radio" name="private" value="true">
+                                                        Only you
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="private" value="false">
+                                                        Anyone
+                                                    </label>
+                                                </div>
+                                                <div class="control">
+                                                    <br>
+                                                    <button
+                                                        class="button is-link is-fullwidth has-text-weight-medium is-medium"
+                                                        onclick="handlePostSubmit()">
+                                                        Create Post
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
     </section>
-  </body>
+</body>
+
 </html>

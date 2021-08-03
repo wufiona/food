@@ -33,19 +33,24 @@ const handlePostSubmit = () => {
     // 1. Capture the form data
     const title = document.querySelector('#title');
     const cost = document.querySelector('#cost');
+    const date = document.querySelector('#date');
     const rating = document.querySelector('#rating'); //TODO: get star rating value
     const picture = document.querySelector('#picture');
     const mood = document.querySelector('#mood');
     const description = document.querySelector('#description');
     const location = document.querySelector('#location');
-    const private = document.querySelector('#private');
+    const private = document.getElementsByName('private');
 
-    // I forgot if javascript support shorthands like {title: title} -> {title} lol
-    // Redundant but just in case it doesn't work
-    console.log(cost.value)
+    let isPrivate;
+    for(i = 0; i < private.length; i++) {
+        if(private[i].checked) {
+            isPrivate = private[i].value == "true";
+        }
+    }
+
     const data = {
         title: title.value,
-        date: Date.now(),
+        date: date,
         cost: cost.value,
         rating: rating.value,
         picture: "https://via.placeholder.com/150",
@@ -64,17 +69,19 @@ const handlePostSubmit = () => {
     }
 
     // 3. Format the data and write it to our database
-    firebase.database().ref(`users/${googleUserId}/posts`).push(data)
+    firebase.database().ref(`users/${googleUserId}/posts/${isPrivate ? "private" : "public"}`).push(data)
         // 4. Clear the form so that we can write a new note
         .then(() => {
             // Reset to default values
             title.value = "";
+            date.value = "";
             cost.value = "";
             rating.value = 5;
             // picture.value = "";
             mood.value = "";
             description.value = "";
             location.value = ""
+            private.value = ""
 
             // Alert user post is created
             // TODO - we should replace eventually lol
