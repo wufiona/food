@@ -55,7 +55,7 @@
                 <label class="label">Date</label>
                 <div class="control">
                   <input class="input is-medium" 
-                        type="text" 
+                        type="date" data-date-inline-picker="true"  
                         id="date"
                         placeholder="">
                 </div>
@@ -63,7 +63,8 @@
                 <label class="label">Cost</label>
                 <div class="control">
                   <input class="input is-medium" 
-                        type="text" 
+                         type = "number"
+                         min = "0"
                         id="cost"
                         placeholder="">
                 </div>
@@ -71,7 +72,9 @@
                 <label class="label">Rating</label>
                 <div class="control">
                   <input class="input is-medium" 
-                        type="text" 
+                        type="number"
+                        min = "1"
+                        min = "5" 
                         id="rating"
                         placeholder="">
                 </div>
@@ -109,11 +112,15 @@
 <div class="field">
                 <label class="label">Privacy</label>
                 <div class="control">
-                  <input class="input is-medium" 
-                        type="text" 
-                        id="private"
-                        placeholder="">
-                </div>
+                 <label class="radio">
+    <input type="radio" name="private">
+    Only you
+  </label>
+  <label class="radio">
+    <input type="radio" name="private">
+    Anyone
+  </label>
+</div>
               <div class="control">
                   <br>
                 <button
