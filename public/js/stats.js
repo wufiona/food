@@ -19,14 +19,22 @@ window.onload = event => {
 function calculateStats(posts) {
     let numberOfPosts = 0;
     let sumRatings = 0;
+    let sumCosts = 0;
+    let locations = [];
     for (let visibility in posts) {
         for (let post in posts[visibility]) {
             console.log(posts[visibility][post].rating)
             sumRatings += parseInt(posts[visibility][post].rating);
+            sumCosts += parseInt(posts[visibility][post].cost);
             numberOfPosts += 1;
+            if (posts[visibility][post].location != locations) {
+                locations.push(posts[visibility][post].location);
+            }
         }
     }
+    let uniqueLocations = locations.length;
     let avgRating = sumRatings/numberOfPosts;
+    let avgCost = sumCosts/numberOfPosts;
     console.log(avgRating);
     const cardHolder = document.querySelector("#cardHolder");
     cardHolder.innerHTML +=
@@ -35,7 +43,7 @@ function calculateStats(posts) {
             <div class="card-content">
                 <div class="content">
                     <p class="title is-1">${numberOfPosts}</p>
-                    <p class="subtitle is-6">posts</p>
+                    <p class="subtitle is-6">post(s)</p>
                 </div>
             </div> 
             </div>
@@ -47,6 +55,28 @@ function calculateStats(posts) {
                 <div class="content">
                     <p class="title is-1">${avgRating}</p>
                     <p class="subtitle is-6">average rating</p>
+                </div>
+            </div> 
+            </div>
+        </div>`;
+    cardHolder.innerHTML +=
+        `<div class="is-half mt-4 card">
+            <!-- CARD -->
+            <div class="card-content">
+                <div class="content">
+                    <p class="title is-1">$${avgCost}</p>
+                    <p class="subtitle is-6">average cost</p>
+                </div>
+            </div> 
+            </div>
+        </div>`;
+    cardHolder.innerHTML +=
+        `<div class="is-half mt-4 card">
+            <!-- CARD -->
+            <div class="card-content">
+                <div class="content">
+                    <p class="title is-1">${uniqueLocations}</p>
+                    <p class="subtitle is-6">location(s)</p>
                 </div>
             </div> 
             </div>
