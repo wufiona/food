@@ -50,7 +50,7 @@ const handlePostSubmit = () => {
 
     const data = {
         title: title.value,
-        date: date,
+        date: date.value,
         cost: cost.value,
         rating: rating.value,
         picture: "https://via.placeholder.com/150",
