@@ -26,23 +26,25 @@ function displayPosts(posts) {
     console.log(posts);
     const cardHolder = document.querySelector("#cardHolder")
     cardHolder.innerHTML = "";
-    for (let post in posts) {
-        cardHolder.innerHTML +=
-            `<div class="is-half mt-4 card">
-                <!-- CARD -->
-                <div class="card-content">
-                    <div class="content">
-                        <p class="title is-4">${posts[post].title}</p>
-                        <p class="title is-5">${posts[post].date}</p>
-                        <p class="title is-5">${posts[post].cost}</p>
-                        <p class="title is-5">${posts[post].rating}</p>
-                        <img src="${posts[post].picture}" />
-                        <p class="title is-5">${posts[post].mood}</p>
-                        <p class="title is-5">${posts[post].description}</p>
-                        <p class="title is-5">${posts[post].location}</p>
+    for (let visibility in posts) {
+        for (let post in posts[visibility]) {
+            cardHolder.innerHTML +=
+                `<div class="is-half mt-4 card">
+                    <!-- CARD -->
+                    <div class="card-content">
+                        <div class="content">
+                            <p class="title is-4">${posts[visibility][post].title}</p>
+                            <p class="title is-5">${posts[visibility][post].date}</p>
+                            <p class="title is-5">${posts[visibility][post].cost}</p>
+                            <p class="title is-5">${posts[visibility][post].rating}</p>
+                            <img src="${posts[visibility][post].picture}" />
+                            <p class="title is-5">${posts[visibility][post].mood}</p>
+                            <p class="title is-5">${posts[visibility][post].description}</p>
+                            <p class="title is-5">${posts[visibility][post].location}</p>
+                        </div>
+                    </div> 
                     </div>
-                </div> 
-                </div>
-            </div>`;
+                </div>`;
+        }
     }
 }
