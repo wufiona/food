@@ -1,6 +1,6 @@
 window.onload = event => {
     // retains user state between html pages.
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             console.log('Logged in as: ' + user.displayName);
             const googleUserId = user.uid;
@@ -10,7 +10,7 @@ window.onload = event => {
             })
         } else {
             // if not logged in, navigate back to login page.
-            window.location = 'index.html'; 
+            window.location = 'index.html';
         };
     });
 }
