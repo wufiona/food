@@ -40,6 +40,7 @@ const handlePostSubmit = () => {
     const description = document.querySelector('#description');
     const location = document.querySelector('#location');
     const private = document.getElementsByName('private');
+    const otherPeople = document.querySelector('#otherPeople');
 
     let isPrivate;
     for(i = 0; i < private.length; i++) {
@@ -80,8 +81,11 @@ const handlePostSubmit = () => {
             // picture.value = "";
             mood.value = "";
             description.value = "";
-            location.value = ""
-            private.value = ""
+            location.value = "";
+            private.value = "";
+            otherPeople.value = "";
+            document.querySelector("#privateOp").checked = false;
+            document.querySelector("#publicOp").checked = false;
 
             // Alert user post is created
             // TODO - we should replace eventually lol
