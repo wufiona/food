@@ -57,6 +57,7 @@ function calculateStats(posts) {
     let avgRating = sumRatings/numberOfPosts;
     let avgCost = sumCosts/numberOfPosts;
     console.log(avgRating);
+    let star = "⭐️"
     const cardHolder = document.querySelector("#statsCardHolder");
     cardHolder.innerHTML +=
         `<div class="is-half mt-4 card">
@@ -74,7 +75,7 @@ function calculateStats(posts) {
             <!-- CARD -->
             <div class="card-content">
                 <div class="content">
-                    <p class="title is-1">${avgRating}</p>
+                    <p class="title is-1">${avgRating.toFixed(2)}</p>
                     <p class="subtitle is-6">average rating</p>
                 </div>
             </div> 
@@ -85,7 +86,7 @@ function calculateStats(posts) {
             <!-- CARD -->
             <div class="card-content">
                 <div class="content">
-                    <p class="title is-1">$${avgCost}</p>
+                    <p class="title is-1">$${avgCost.toFixed(2)}</p>
                     <p class="subtitle is-6">average cost</p>
                 </div>
             </div> 
