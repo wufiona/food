@@ -26,7 +26,7 @@
             <img src="https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png" />
         </div>
         <a class="sidebarItem isActive">Home</a>
-        <a class="sidebarItem" href="home.html">Profile</a>
+        <a class="sidebarItem" href="stats.html">Profile</a>
         <a class="sidebarItem" href="createPost.html">Create</a>
         <a class="sidebarItem">Explore</a>
     </div>
@@ -44,7 +44,8 @@
                 </span>
             </p>
         </nav>
-        <div id="cardHolder" class="columns is-centered" />
+        <div id="cardHolder" class="columns is-centered">
+        </div>
         <!-- Your HTML goes here! -->
         <div id="editNoteModal" class="modal">
             <div class="modal-background"></div>
@@ -114,7 +115,7 @@
                     </div>
                 </section>
                 <footer class="modal-card-foot">
-                    <button class="button is-success" id="saveEdit">
+                    <button class="button" id="saveEdit">
                         Save changes
                     </button>
                     <button class="button" onclick="closeEditModal()">Cancel</button>
