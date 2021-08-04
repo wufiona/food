@@ -17,9 +17,12 @@ body {
 #sidebar {
     width: 220px;
     max-width: 33vw;
-    background-color: #F5B28D;
     height: 100vh;
+    overflow-y: auto;
+    background-color: #F5B28D;
     z-index: 3;
+    position: sticky;
+    top: 0;
 }
 #content {
     width: 100%;
@@ -63,15 +66,35 @@ body {
 /* Styling for Navbar */
 #navbar {
     display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
     height: 75px;
     background-color: #E26B28;
     z-index: 1;
     padding: 12px 32px;
     align-items: center;
+    position: sticky;
+    top: 0;
 }
 .searchWrapper {
     width: 100%;
+    margin-right: 24px;
 }
 .searchBar {
     width: 100%;
+}
+
+
+@media (max-width: 768px) {
+    #navbar {
+        flex-direction: row;
+    }
+    .searchWrapper {
+        width: 100%;
+        margin-right: 0;
+        margin-left: 24px;
+    }
+    #sidebar {
+        display: none;
+    }
 }
