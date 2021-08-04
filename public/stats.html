@@ -18,10 +18,50 @@
 
     <!-- verification of sign-in goes here -->
   </head>
-  <body>
+  <body id="contentContainer">
+    <div id="sidebar">
+        <div class="sidebarLogo">
+            <img src="https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png" />
+        </div>
+        <a class="sidebarItem isActive">Home</a>
+        <a class="sidebarItem" href="stats.html">Profile</a>
+        <a class="sidebarItem" href="createPost.html">Create</a>
+        <a class="sidebarItem">Explore</a>
+    </div>
     <div id="content">
-        <div id="statsCardHolder" class="columns is-centered">
+        <nav id="navbar" class="nav">
+            <div class="nav-left">
+                <div class="image is-48x48">
+                    <img class="is-rounded" src="https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png" />
+                </div>
+            </div>
+            <p class="nav-right searchWrapper control has-icons-left">
+                <input id="searchBar" class="input is-warning" type="text" placeholder="Search something here">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-search"></i>
+                </span>
+            </p>
+        </nav>
+        <div id="userHeader">
+            <img src="https://cdn.glitch.com/8d7c1443-e6ae-466c-a2fb-143582521dfd%2F5776aa96-7a4d-4bc6-9323-d2a7f2f84359.image.png?v=1628117169685" />
+            <img id="pfImage" src="https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png" class="pfPic">
+            <div id="pfName">
+                <p class="title name">
+                    First Last
+                </p>
+                <p class="subtitle username">
+                    @username
+                </p>
+            </div>
+            <img src="https://cdn.glitch.com/8d7c1443-e6ae-466c-a2fb-143582521dfd%2Fe27fcfdd-d116-40c9-ab46-4efbcea3938a.image.png?v=1628119010360" id="editImage" />
+        </div>
+        <div class="sidebyside">
+            <div id="statsCardHolder" class="columns is-centered">
 
+            </div>
+            <div id="challengesHolder">
+
+            </div>
         </div>
         <!-- Your HTML goes here! -->
     </div>
