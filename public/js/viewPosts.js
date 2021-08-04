@@ -109,6 +109,7 @@ function editCard(private, id) {
         const data = snapshot.val();
         const details = data[id];
         // 1. Capture the form data
+        console.log(details);
         document.querySelector('#title').value = details.title;
         document.querySelector('#cost').value = details.cost;
         document.querySelector('#date').value = details.date;

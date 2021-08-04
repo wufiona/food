@@ -42,53 +42,58 @@ const handlePostSubmit = () => {
     const private = document.getElementsByName('private');
     const otherPeople = document.querySelector('#otherPeople');
 
-    let isPrivate;
-    for(i = 0; i < private.length; i++) {
-        if(private[i].checked) {
-            isPrivate = private[i].value == "true";
+    if (rating.value <= 5 && rating.value >= 0 && rating.value % 1 === 0) {
+
+        let isPrivate;
+        for(i = 0; i < private.length; i++) {
+            if(private[i].checked) {
+                isPrivate = private[i].value == "true";
+            }
         }
-    }
 
-    const data = {
-        title: title.value,
-        date: date.value,
-        cost: cost.value,
-        rating: rating.value,
-        picture: "https://via.placeholder.com/150",
-        mood: mood.value,
-        description: description.value,
-        location: location.value,
-    }
-
-    // 2. Validate Data
-    for (const prop in data) {
-        console.log(`${prop}: ${data[prop]}`);
-        if (data[prop] == "" || typeof data[prop] == undefined) {
-            alert(`Please enter a valid input for ${prop}.`)
-            return 1;
+        const data = {
+            title: title.value,
+            date: date.value,
+            cost: cost.value,
+            rating: rating.value,
+            picture: "https://via.placeholder.com/150",
+            mood: mood.value,
+            description: description.value,
+            location: location.value,
         }
-    }
 
-    // 3. Format the data and write it to our database
-    firebase.database().ref(`users/${googleUserId}/posts/${isPrivate ? "private" : "public"}`).push(data)
-        // 4. Clear the form so that we can write a new note
-        .then(() => {
-            // Reset to default values
-            title.value = "";
-            date.value = "";
-            cost.value = "";
-            rating.value = "";
-            // picture.value = "";
-            mood.value = "";
-            description.value = "";
-            location.value = "";
-            private.value = "";
-            otherPeople.value = "";
-            document.querySelector("#privateOp").checked = false;
-            document.querySelector("#publicOp").checked = false;
+        // 2. Validate Data
+        for (const prop in data) {
+            console.log(`${prop}: ${data[prop]}`);
+            if (data[prop] == "" || typeof data[prop] == undefined) {
+                alert(`Please enter a valid input for ${prop}.`)
+                return 1;
+            }
+        }
 
-            // Alert user post is created
-            // TODO - we should replace eventually lol
-            alert("Post is created!")
-        });
+        // 3. Format the data and write it to our database
+        firebase.database().ref(`users/${googleUserId}/posts/${isPrivate ? "private" : "public"}`).push(data)
+            // 4. Clear the form so that we can write a new note
+            .then(() => {
+                // Reset to default values
+                title.value = "";
+                date.value = "";
+                cost.value = "";
+                rating.value = "";
+                // picture.value = "";
+                mood.value = "";
+                description.value = "";
+                location.value = "";
+                private.value = "";
+                otherPeople.value = "";
+                document.querySelector("#privateOp").checked = false;
+                document.querySelector("#publicOp").checked = false;
+
+                // Alert user post is created
+                // TODO - we should replace eventually lol
+                alert("Post is created!")
+            });
+        } else {
+            alert("enter whole number rating between 1 and 5");
+        }
 };
