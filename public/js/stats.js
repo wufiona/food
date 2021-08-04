@@ -57,7 +57,7 @@ function calculateStats(posts) {
     let avgRating = sumRatings/numberOfPosts;
     let avgCost = sumCosts/numberOfPosts;
     console.log(avgRating);
-    const cardHolder = document.querySelector("#cardHolder");
+    const cardHolder = document.querySelector("#statsCardHolder");
     cardHolder.innerHTML +=
         `<div class="is-half mt-4 card">
             <!-- CARD -->

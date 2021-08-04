@@ -167,3 +167,14 @@ body {
     position: relative;
     left: 200px;
 }
+
+#statsCardHolder .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#statsCardHolder .card {
+    background-color: #ebe1ce !important;
+    border-radius: 5px;
+}
