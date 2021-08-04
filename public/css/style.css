@@ -98,3 +98,72 @@ body {
         display: none;
     }
 }
+
+/* for cards/posts */
+
+#cardHolder .card {
+  width: 400px;
+  margin: 10px;
+  background-color: #ebe1ce !important;
+  border-radius: 5px;
+  height: fit-content;
+}
+
+.left-image {
+  width: 200px;;
+}
+
+.right-images {
+  width: 130px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.images {
+  display: flex;
+  justify-content: space-between;
+}
+
+#cardHolder .card img {
+  border-radius: 5px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.left-image .image img {
+  height: 200px;
+}
+
+.right-images .image img {
+  height: 90px;
+}
+
+.removeMarginB {
+  margin-bottom: 0px !important; 
+}
+
+#cardHolder {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  top: 15px;
+}
+
+@media (max-width:420px) {
+  .right-images {
+    display: none;
+  }
+  
+  .left-image {
+    width: 100%;
+  }
+}
+
+#cardHolder button {
+    position: relative;
+    left: 200px;
+}
