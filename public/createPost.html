@@ -58,64 +58,70 @@
                                 <input class="input is-medium" type="date" data-date-inline-picker="true" id="date"
                                     placeholder="">
                             </div>
-                            <div class="field">
-                                <label class="label">Cost</label>
-                                <div class="control">
-                                    <input class="input is-medium" type="number" min="0" id="cost" placeholder="">
-                                </div>
-                                <div class="field">
-                                    <label class="label">Rating</label>
-                                    <div class="control">
-                                        <input class="input is-medium" type="number" min="1" min="5" id="rating"
-                                            placeholder="">
-                                    </div>
-                                    <div class="field">
-                                        <label class="label">Mood</label>
-                                        <div class="control">
-                                            <input class="input is-medium" type="text" id="mood" placeholder="">
-                                        </div>
-                                        <div class="field">
-                                            <label class="label">Location</label>
-                                            <div class="control">
-                                                <input class="input is-medium" type="text" id="location" placeholder="">
-                                            </div>
-                                            <div class="field">
-                                                <label class="label">Other People</label>
-                                                <div class="control">
-                                                    <input class="input is-medium" type="text" id="otherPeople"
-                                                        placeholder="">
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <label class="label">Description</label>
-                                                <div class="control">
-                                                    <textarea class="textarea is-medium" id="description"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <label class="label">Privacy</label>
-                                                <div class="control">
-                                                    <label class="radio">
-                                                        <input type="radio" name="private" value="true">
-                                                        Only you
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="private" value="false">
-                                                        Anyone
-                                                    </label>
-                                                </div>
-                                                <div class="control">
-                                                    <br>
-                                                    <button
-                                                        class="button is-link is-fullwidth has-text-weight-medium is-medium"
-                                                        onclick="handlePostSubmit()">
-                                                        Create Post
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Cost</label>
+                            <div class="control">
+                                <input class="input is-medium" type="number" min="0" id="cost" placeholder="">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Rating</label>
+                            <div class="control">
+                                <input class="input is-medium" type="number" min="1" min="5" id="rating"
+                                    placeholder="">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Mood</label>
+                            <div class="control">
+                                <input class="input is-medium" type="text" id="mood" placeholder="">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Location</label>
+                            <div class="control">
+                                <input class="input is-medium" type="text" id="location" placeholder="">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Other People</label>
+                            <div class="control">
+                                <input class="input is-medium" type="text" id="otherPeople"
+                                    placeholder="">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Description</label>
+                            <div class="control">
+                                <textarea class="textarea is-medium" id="description"></textarea>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Privacy</label>
+                            <div class="control">
+                                <label class="radio">
+                                    <input type="radio" name="private" value="true" id="privateOp">
+                                    Only you
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="private" value="false" id="publicOp">
+                                    Anyone
+                                </label>
+                            </div>
+                        </div>
+                        <div class="control">
+                            <br>
+                            <button
+                                class="button is-link is-fullwidth has-text-weight-medium is-medium"
+                                onclick="handlePostSubmit()">
+                                Create Post
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </body>
 
