@@ -53,73 +53,28 @@
             <div class="modal-card">
                 <section class="modal-card-body">
                     <div class="field">
-                        <label class="label">ONBOARDING MODAL</label>
+                        <label class="label">display name</label>
                         <div class="control">
-                            <input class="input is-medium" type="text" id="title" />
+                            <input class="input is-medium" type="text" id="displayName" />
                         </div>
                     </div>
                     <div class="field">
-                        <label class="label">Date</label>
+                        <label class="label">general region</label>
                         <div class="control">
-                            <input class="input is-medium" type="date" data-date-inline-picker="true" id="date"
-                                placeholder="">
+                            <input class="input is-medium" type="text" id="displayName" />
                         </div>
                     </div>
                     <div class="field">
-                        <label class="label">Cost</label>
-                        <div class="control">
-                            <input class="input is-medium" type="number" min="0" id="cost" placeholder="">
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label class="label">Rating</label>
-                        <div class="control">
-                            <input class="input is-medium" type="number" min="1" min="5" id="rating" placeholder="">
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label class="label">Mood</label>
-                        <div class="control">
-                            <input class="input is-medium" type="text" id="mood" placeholder="">
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label class="label">Location</label>
-                        <div class="control">
-                            <input class="input is-medium" type="text" id="location" placeholder="">
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label class="label">Other People</label>
-                        <div class="control">
-                            <input class="input is-medium" type="text" id="otherPeople" placeholder="">
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label class="label">Description</label>
+                        <label class="label">blurb</label>
                         <div class="control">
                             <textarea class="textarea is-medium" id="description"></textarea>
                         </div>
                     </div>
-                    <div class="field">
-                        <label class="label">Privacy</label>
-                        <div class="control">
-                            <label class="radio">
-                                <input type="radio" name="private" value="true" id="privateOp">
-                                Only you
-                            </label>
-                            <label class="radio">
-                                <input type="radio" name="private" value="false" id="publicOp">
-                                Anyone
-                            </label>
-                        </div>
-                    </div>
                 </section>
                 <footer class="modal-card-foot">
-                    <button class="button" id="saveEdit">
-                        Save changes
+                    <button class="button" id="submitProfile">
+                        Create Profile
                     </button>
-                    <button class="button" onclick="closeOnboardingModal()">Cancel</button>
                 </footer>
             </div>
         </div>

@@ -156,11 +156,6 @@ function editCard(private, id) {
     }
 }
 
-function closeOnboardingModal() {
-    const onboardingModal = document.querySelector("#onboardingModal");
-    onboardingModal.classList.toggle('is-active');
-}
-
 function closeEditModal() {
     const editNoteModal = document.querySelector("#editNoteModal");
     editNoteModal.classList.toggle('is-active');

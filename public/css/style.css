@@ -28,6 +28,19 @@ body {
     width: 100%;
     background-color: #FFFAEE;
 }
+@media (max-width: 768px) {
+    #navbar {
+        flex-direction: row;
+    }
+    .searchWrapper {
+        width: 100%;
+        margin-right: 0;
+        margin-left: 24px;
+    }
+    #sidebar {
+        display: none;
+    }
+}
 
 /* Styling for sidebar */
 .sidebarLogo {
@@ -82,21 +95,6 @@ body {
 }
 .searchBar {
     width: 100%;
-}
-
-
-@media (max-width: 768px) {
-    #navbar {
-        flex-direction: row;
-    }
-    .searchWrapper {
-        width: 100%;
-        margin-right: 0;
-        margin-left: 24px;
-    }
-    #sidebar {
-        display: none;
-    }
 }
 
 /* for cards/posts */
@@ -222,4 +220,40 @@ body {
   .left-image-big {
     width: 100%;
   }
+}
+/* Modal styling */
+.modal-card {
+    border-radius: 15px;
+}
+.modal-card-body {
+    background-color: #E26B28!important;
+}
+.modal-card-foot {
+    border: none;
+    display: flex;
+    flex-direction: row-reverse;
+    background-color: #E26B28!important;
+}
+.modal-card-foot button {
+    background-color: #FFDF81!important;
+    border-radius: 25px;
+    border: none;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 600;
+}
+.modal-card-body label {
+    color: #FFFAEE!important;
+}
+@media (max-width: 768px) {
+    .modal-background {
+        display: none;
+    }
+    .modal-card {
+        position: absolute;
+        top: 70px;
+        border-radius: 0;
+        width: 100vw;
+        max-height: calc(100vh - 70px);
+        margin: 0;
+    }
 }
