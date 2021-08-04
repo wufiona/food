@@ -17,18 +17,24 @@ window.onload = event => {
             // Update user profile info
             const profileRef = firebase.database().ref(`users/${googleUserId}/profile`);
             profileRef.on("value", (snapshot) => {
-                const profileItems = snapshot.val();
-                console.log(profileItems)
-                userProfile.displayName = profileItems["displayName"];
-                userProfile.region = profileItems["region"]
-                userProfile.blurb = profileItems["blurb"]
-            })
+                const profileItem = snapshot.val();
+                if (profileItem !== null) {
+                    console.log("found profile!!")
+                    console.log(profileItem)
+                    userProfile.displayName = profileItem["displayName"];
+                    userProfile.region = profileItem["region"]
+                    userProfile.blurb = profileItem["blurb"]
 
-            // If no profile found, prompt onboarding modal
-            if (userProfile.displayName == null || userProfile.region == null || userProfile.blurb == null) {
-                const onboardingModal = document.querySelector("#onboardingModal");
-                onboardingModal.classList.toggle('is-active');
-            }
+                    console.log(profileItem["displayName"])
+                    console.log(profileItem["region"])
+                    console.log(profileItem["blurb"])
+
+                } else {
+                    console.log("No profile found!")
+                    const onboardingModal = document.querySelector("#onboardingModal");
+                    onboardingModal.classList.add('is-active');
+                }
+            })
 
             // Fetch posts available
             const postsRef = firebase.database().ref(`users/${googleUserId}/posts`);
@@ -127,7 +133,7 @@ function displayPosts(posts) {
 
 function editCard(private, id) {
     console.log(private);
-    const editNoteModal = document.querySelector('.modal');
+    const editNoteModal = document.querySelector('#editNoteModal');
     console.log(editNoteModal);
     const notesRef = firebase.database().ref(`users/${googleUserId}/posts/${private}`);
     editNoteModal.classList.toggle('is-active');
@@ -222,4 +228,47 @@ function handleSaveEdit(private, id) {
         });
     const editNoteModal = document.querySelector("#editNoteModal");
     editNoteModal.classList.toggle('is-active');
+}
+
+/// ONBOARDING PROFILE CREATION
+function createProfile() {
+    const displayName = document.querySelector('#displayName');
+    const region = document.querySelector('#region');
+    const blurb = document.querySelector('#blurb');
+
+    const data = {
+        displayName: displayName.value,
+        region: region.value,
+        blurb: blurb.value,
+    }
+
+    // 2. Validate Data
+    for (const prop in data) {
+        console.log(`${prop}: ${data[prop]}`);
+        if (data[prop] == "" || typeof data[prop] == undefined) {
+            alert(`Please enter a valid input for ${prop}.`)
+            return 1;
+        }
+    }
+
+    // 3. Format the data and write it to our database
+    firebase.database().ref(`users/${googleUserId}/profile`).set(data)
+        // 4. Clear the form so that we can write a new note
+        .then(() => {
+            // Update local variables
+            userProfile.displayName = data.displayName;
+            userProfile.region = data.region;
+            userProfile.blurb = data.blurb;
+
+            // Reset to default values
+            displayName.value = "";
+            region.value = "";
+            blurb.value = "";
+
+            // Alert user post is created
+            // TODO - we should replace eventually lol
+            alert("Profile is updated!")
+        });
+    const onboardingModal = document.querySelector("#onboardingModal");
+    onboardingModal.classList.toggle('is-active');
 }
