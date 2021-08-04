@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "food-3f467"
+    "default": "food-3f467",
+    "staging": "food-3f467"
   }
 }
