@@ -1,29 +1,46 @@
+var users;
+let googleUserId;
+
 window.onload = event => {
     // retains user state between html pages.
     firebase.auth().onAuthStateChanged(function(user) {
         //need to store display name earlier so we can display here
         if (user) {
             console.log('Logged in as: ' + user.displayName);
-            const googleUserId = user.uid;
+            googleUserId = user.uid;
             console.log("in random.js")
             const usersRef = firebase.database().ref(`users`);
             usersRef.on("value", (snapshot) => {
-                var user = snapshot.val();
-                var allUserIds = Object.keys(snapshot.val());
-                randomUser = allUserIds[Math.floor(Math.random() * (allUserIds.length))];
-                userPosts =  user[randomUser]["posts"]["public"];
-                var allPostIds = Object.keys(userPosts);
-                console.log(userPosts);
-                randomPost = allPostIds[Math.floor(Math.random() * (allPostIds.length))]
-                thePost = userPosts[randomPost];
-                console.log(thePost);
-                displayPost(thePost);
+                users = snapshot.val();
+                findRandomPost();
             })
         } else {
             // if not logged in, navigate back to login page.
             window.location = 'index.html'; 
         };
     });
+}
+
+document.getElementById("refreshExplore").addEventListener("click", findRandomPost);
+
+function findRandomPost() {
+    var allUserIds = Object.keys(users);
+    var randomUser = findRandomUser(allUserIds);
+    userPosts =  users[randomUser]["posts"]["public"];
+    var allPostIds = Object.keys(userPosts);
+    console.log(userPosts);
+    randomPost = allPostIds[Math.floor(Math.random() * (allPostIds.length))]
+    thePost = userPosts[randomPost];
+    console.log(thePost);
+    displayPost(thePost);
+}
+
+function findRandomUser(allUserIds){
+    do {
+        randomUser = allUserIds[Math.floor(Math.random() * (allUserIds.length))]
+        console.log("finding randomUser");
+    } while (randomUser == googleUserId);
+    return (randomUser);
 }
 
 function displayPost(post) {
