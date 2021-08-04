@@ -28,7 +28,10 @@ function calculateStats(posts) {
             sumRatings += parseInt(posts[visibility][post].rating);
             sumCosts += parseInt(posts[visibility][post].cost);
             numberOfPosts += 1;
-            if (posts[visibility][post].location != locations) {
+            if (locations.includes(posts[visibility][post].location)) {
+                console.log("in");
+            } else {
+                console.log(locations);
                 console.log(posts[visibility][post].location);
                 locations.push(posts[visibility][post].location);
             }
