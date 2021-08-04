@@ -178,3 +178,48 @@ body {
     background-color: #ebe1ce !important;
     border-radius: 5px;
 }
+
+#cardHolder .card-big {
+  width: 800px;
+  margin: 10px;
+  background-color: #ebe1ce !important;
+  border-radius: 5px;
+  height: fit-content;
+  
+}
+
+.left-image-big {
+  width: 400px;
+}
+
+.right-images-big {
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#cardHolder .card-big img {
+  border-radius: 5px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.left-image-big .image img {
+  height: 400px;
+}
+
+.right-images-big .image img {
+  height: 180px;
+}
+
+
+@media (max-width:750px) {
+  .right-images-big {
+    display: none;
+  }
+  
+  .left-image-big {
+    width: 100%;
+  }
+}
