@@ -21,6 +21,7 @@ function calculateStats(posts) {
     let sumRatings = 0;
     let sumCosts = 0;
     let locations = [];
+    let moodDict = {};
     for (let visibility in posts) {
         for (let post in posts[visibility]) {
             console.log(posts[visibility][post].rating)
@@ -28,10 +29,27 @@ function calculateStats(posts) {
             sumCosts += parseInt(posts[visibility][post].cost);
             numberOfPosts += 1;
             if (posts[visibility][post].location != locations) {
+                console.log(posts[visibility][post].location);
                 locations.push(posts[visibility][post].location);
+            }
+            let mood = posts[visibility][post].mood;
+            if (mood in moodDict) {
+                moodDict[mood] += 1;
+            } else {
+                moodDict[mood] = 1;
             }
         }
     }
+    let highestMood = "";
+    let highestMoodCount = 0;
+    console.log(moodDict);
+    for (let mood in moodDict) {
+        if (moodDict[mood] > highestMoodCount) {
+            highestMood = mood;
+            highestMoodCount = moodDict[mood];
+        }
+    }
+    console.log(highestMood);
     let uniqueLocations = locations.length;
     let avgRating = sumRatings/numberOfPosts;
     let avgCost = sumCosts/numberOfPosts;
@@ -77,6 +95,17 @@ function calculateStats(posts) {
                 <div class="content">
                     <p class="title is-1">${uniqueLocations}</p>
                     <p class="subtitle is-6">location(s)</p>
+                </div>
+            </div> 
+            </div>
+        </div>`;
+    cardHolder.innerHTML +=
+        `<div class="is-half mt-4 card">
+            <!-- CARD -->
+            <div class="card-content">
+                <div class="content">
+                    <p class="title is-1">${highestMoodCount}</p>
+                    <p class="subtitle is-6">instances of ${highestMood}</p>
                 </div>
             </div> 
             </div>
