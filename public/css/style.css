@@ -177,4 +177,65 @@ body {
 #statsCardHolder .card {
     background-color: #ebe1ce !important;
     border-radius: 5px;
+    width:30%;
+}
+
+#statsCardHolder {
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#userHeader {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5px;
+    height: 9.5vw;
+}
+
+.pfPic {
+    width: 7.5vw;
+    height: 7.5vw;
+    border-radius: 3.75vw;
+    position: relative;
+    top: -8.7vw;
+    left: 0.5vw;
+    position:relative;
+}
+
+#pfName {
+    position: relative;
+    top: -16vw;
+    left: 10vw;
+}
+
+.name {
+    font-size: 3vw;
+}
+
+.username {
+    font-size: 2vw;
+}
+
+#editImage {
+    width: 3vw;
+    height: 3vw;
+    border-radius: 1.5vw;
+    position: relative;
+    top: -18vw;
+    left: 5vw;
+    position:relative;  
+}
+
+.sidebyside {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+#challengesHolder {
+    background-color: black;
+    height: 200px;
+    width: 35%;
+    justify-content: space-around;
 }
