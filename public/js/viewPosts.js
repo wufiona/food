@@ -1,15 +1,42 @@
+console.log("code running")
+
 let googleUserId;
+const userProfile = {
+    displayName: null,
+    region: null,
+    blurb: null,
+};
+
 window.onload = event => {
-    // retains user state between html pages.
-    firebase.auth().onAuthStateChanged(function(user) {
+    // Retains user state between html pages.
+    firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             console.log('Logged in as: ' + user.displayName);
             googleUserId = user.uid;
+
+            // Update user profile info
+            const profileRef = firebase.database().ref(`users/${googleUserId}/profile`);
+            profileRef.on("value", (snapshot) => {
+                const profileItems = snapshot.val();
+                console.log(profileItems)
+                userProfile.displayName = profileItems["displayName"];
+                userProfile.region = profileItems["region"]
+                userProfile.blurb = profileItems["blurb"]
+            })
+
+            // If no profile found, prompt onboarding modal
+            if (userProfile.displayName == null || userProfile.region == null || userProfile.blurb == null) {
+                const onboardingModal = document.querySelector("#onboardingModal");
+                onboardingModal.classList.toggle('is-active');
+            }
+
+            // Fetch posts available
             const postsRef = firebase.database().ref(`users/${googleUserId}/posts`);
             postsRef.on("value", (snapshot) => {
                 const posts = snapshot.val();
                 displayPosts(posts);
             })
+
             // test with cassieTest sample
             // const postsRef1 = firebase.database().ref(`users/cassieTest/posts`);
             // postsRef1.on("value", (snapshot) => {
@@ -18,7 +45,7 @@ window.onload = event => {
             // })
         } else {
             // if not logged in, navigate back to login page.
-            window.location = 'index.html'; 
+            window.location = 'index.html';
         };
     });
 }
@@ -100,8 +127,8 @@ function displayPosts(posts) {
 
 function editCard(private, id) {
     console.log(private);
-    const editNoteModal = document.querySelector('.modal');  
-    console.log(editNoteModal);  
+    const editNoteModal = document.querySelector('.modal');
+    console.log(editNoteModal);
     const notesRef = firebase.database().ref(`users/${googleUserId}/posts/${private}`);
     editNoteModal.classList.toggle('is-active');
     const saveEditBtn = document.querySelector('#saveEdit');
@@ -127,7 +154,6 @@ function editCard(private, id) {
         console.log(document.querySelector("#publicOp"));
         document.querySelector("#publicOp").checked = true;
     }
-
 }
 
 function closeEditModal() {
@@ -147,8 +173,8 @@ function handleSaveEdit(private, id) {
     const privateIn = document.getElementsByName('private');
 
     let isPrivate;
-    for(i = 0; i < privateIn.length; i++) {
-        if(privateIn[i].checked) {
+    for (i = 0; i < privateIn.length; i++) {
+        if (privateIn[i].checked) {
             isPrivate = privateIn[i].value == "true";
         }
     }

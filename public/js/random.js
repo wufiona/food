@@ -48,20 +48,50 @@ function displayPost(post) {
     const cardHolder = document.querySelector("#cardHolder")
     cardHolder.innerHTML ="";
     cardHolder.innerHTML =
-                `<div class="is-half mt-4 card">
-                    <!-- CARD -->
-                    <div class="card-content">
-                        <div class="content">
-                            <p class="title is-4">${post.title}</p>
-                            <p class="title is-5">${post.date}</p>
-                            <p class="title is-5">${post.cost}</p>
-                            <p class="title is-5">${post.rating}</p>
-                            <img src="${post.picture}" />
-                            <p class="title is-5">${post.mood}</p>
-                            <p class="title is-5">${post.description}</p>
-                            <p class="title is-5">${post.location}</p>
-                        </div>
-                    </div> 
-                    </div>
-                </div>`;
+                `      <div class="card-big">
+        <div class="card-content">
+          <div class="images">
+            <div class="left-image-big">
+              <figure class="image">
+                <img
+                  src="https://thumbor.thedailymeal.com/O5BS3X-3J3JKcsTKYdYd996xqsI=/870x565/https://www.thedailymeal.com/sites/default/files/slideshows/1943277/2108053/0.jpg"
+                  alt="Placeholder image"
+                />
+              </figure>
+            </div>
+            <div class="right-images-big">
+              <figure class="image">
+                <img
+                  src="https://thumbor.thedailymeal.com/O5BS3X-3J3JKcsTKYdYd996xqsI=/870x565/https://www.thedailymeal.com/sites/default/files/slideshows/1943277/2108053/0.jpg"
+                 alt="Placeholder image"
+                />
+              </figure>
+              <figure class="image">
+                <img
+                  src="https://keyassets.timeincuk.net/inspirewp/live/wp-content/uploads/sites/34/2020/02/Spain-restaurants.jpg"
+                  alt="Placeholder image"
+                />
+              </figure>
+            </div>
+          </div>
+          <div class="media">
+            <div class="media-content">
+              <br />
+              <p class="removeMarginB title is-1">
+                ${post.title}
+              </p>
+              <p class="is-1">${post.location}</p>
+              <p class="is-1">
+                 Rating: ${post.rating} | Cost: $${post.cost} | Mood: ${post.mood}
+              </p>
+            </div>
+          </div>
+          <div class="content">
+            ${post.description}
+            <br />
+            <br />
+            <time datetime="${post.date}">${post.date}</time>
+          </div>
+        </div>
+      </div>`;
 }

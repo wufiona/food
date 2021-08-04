@@ -1,21 +1,160 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Food</title>
-
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/8.3.1/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
     <script defer src="/__/firebase/8.3.1/firebase-auth.js"></script>
     <script defer src="/__/firebase/8.3.1/firebase-database.js"></script>
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <script defer src="js/viewPosts.js"></script>
     <!-- verification of sign-in goes here -->
-  </head>
-  <body>
-    <!-- Your HTML goes here! -->
-  </body>
+    <!-- Font awesome icons: remember to add this to every file that uses icons -->
+    <script src="https://kit.fontawesome.com/957b86070a.js" crossorigin="anonymous"></script>
+</head>
+
+<body id="contentContainer">
+    <div id="sidebar">
+        <div class="sidebarLogo">
+            <img src="https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png" />
+        </div>
+        <a class="sidebarItem isActive">Home</a>
+        <a class="sidebarItem" href="stats.html">Profile</a>
+        <a class="sidebarItem" href="createPost.html">Create</a>
+        <a class="sidebarItem">Explore</a>
+    </div>
+    <div id="content">
+        <nav id="navbar" class="nav">
+            <div class="nav-left">
+                <div class="image is-48x48">
+                    <img class="is-rounded"
+                        src="https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png" />
+                </div>
+            </div>
+            <p class="nav-right searchWrapper control has-icons-left">
+                <input id="searchBar" class="input is-warning" type="text" placeholder="Search something here">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-search"></i>
+                </span>
+            </p>
+        </nav>
+        <div id="cardHolder" class="columns is-centered">
+        </div>
+        <!-- Onboarding modal -->
+        <div id="onboardingModal" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <section class="modal-card-body">
+                    <div class="field">
+                        <label class="label">display name</label>
+                        <div class="control">
+                            <input class="input is-medium" type="text" id="displayName" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">general region</label>
+                        <div class="control">
+                            <input class="input is-medium" type="text" id="displayName" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">blurb</label>
+                        <div class="control">
+                            <textarea class="textarea is-medium" id="description"></textarea>
+                        </div>
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button" id="submitProfile">
+                        Create Profile
+                    </button>
+                </footer>
+            </div>
+        </div>
+        <!-- Edit Notes modal -->
+        <div id="editNoteModal" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <section class="modal-card-body">
+                    <div class="field">
+                        <label class="label">Title</label>
+                        <div class="control">
+                            <input class="input is-medium" type="text" id="title" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Date</label>
+                        <div class="control">
+                            <input class="input is-medium" type="date" data-date-inline-picker="true" id="date"
+                                placeholder="">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Cost</label>
+                        <div class="control">
+                            <input class="input is-medium" type="number" min="0" id="cost" placeholder="">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Rating</label>
+                        <div class="control">
+                            <input class="input is-medium" type="number" min="1" min="5" id="rating" placeholder="">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Mood</label>
+                        <div class="control">
+                            <input class="input is-medium" type="text" id="mood" placeholder="">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Location</label>
+                        <div class="control">
+                            <input class="input is-medium" type="text" id="location" placeholder="">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Other People</label>
+                        <div class="control">
+                            <input class="input is-medium" type="text" id="otherPeople" placeholder="">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Description</label>
+                        <div class="control">
+                            <textarea class="textarea is-medium" id="description"></textarea>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Privacy</label>
+                        <div class="control">
+                            <label class="radio">
+                                <input type="radio" name="private" value="true" id="privateOp">
+                                Only you
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="private" value="false" id="publicOp">
+                                Anyone
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button" id="saveEdit">
+                        Save changes
+                    </button>
+                    <button class="button" onclick="closeEditModal()">Cancel</button>
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>
