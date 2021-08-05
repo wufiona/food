@@ -205,6 +205,8 @@ button {
     top: -8.7vw;
     left: 0.5vw;
     position:relative;
+    object-fit: cover;
+    overflow: hidden;
 }
 
 #pfName {
@@ -339,7 +341,7 @@ border-radius: 50px;
   display: block;
 }
 .pfp-info-card{
-width: 150px;
+  width: 150px;
   height: 150px;
   position: relative;
   object-fit: cover;
@@ -510,4 +512,6 @@ width: 150px;
     background-size:contain;
     background-position:center;
     border-radius:50%;
+    object-fit: cover;
+    overflow: hidden;
 }
