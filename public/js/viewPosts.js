@@ -101,11 +101,7 @@ function displayPosts(posts) {
                             <div class="right-images">
                             <figure class="image">
                                 <img
-<<<<<<< HEAD
                                 src=${posts[visibility][post].pictures && posts[visibility][post].pictures["1"] ? posts[visibility][post].pictures["1"] : "https://source.unsplash.com/1600x900/?food"}
-=======
-                                src="https://i.pinimg.com/originals/89/8f/b5/898fb51362e50765aeb902b82f781d99.jpg"
->>>>>>> b203e6481a2688389d5600cb6e7479a1b6a6ace3
                                 alt="Placeholder image"
                                 />
                             </figure>
