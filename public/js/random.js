@@ -29,8 +29,6 @@ window.onload = event => {
     });
 }
 
-document.getElementById("refreshExplore").addEventListener("click", findRandomPost);
-
 function findRandomPost() {
     var allUserIds = Object.keys(users);
     var randomUser = findRandomUser(allUserIds);
@@ -113,6 +111,7 @@ function displayRandomUser(profile) {
     profileHolder.innerHTML ="";
     profileHolder.innerHTML =
                 `
+                <div class="personCard" style="background-color: #ebe1ce;">
                     <div class="split">
                         <img class=pfp-info-card src="${profile.pfp}" />
                         <div class="split-right">
@@ -122,7 +121,10 @@ function displayRandomUser(profile) {
                     </div>
                     <p class="subtitle"> ${profile.blurb}</p>
                     <p class="subtitle">join date!</p>
-                
+                </div>
+                <div class="center">
+                        <button class="button" id="refreshExplore" onclick="findRandomPost()"> Explore again! </button>
+                </div>           
 `;
 }
 

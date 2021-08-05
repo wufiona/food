@@ -1,6 +1,6 @@
 console.log("code running")
-var futurePfp = "https://images.unsplash.com/photo-1533910534207-90f31029a78e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80";
-var currentPfp = "";
+let futurePfp = "https://images.unsplash.com/photo-1533910534207-90f31029a78e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80";
+let currentPfp = "";
 
 let googleUserId;
 const userProfile = {
@@ -101,7 +101,11 @@ function displayPosts(posts) {
                             <div class="right-images">
                             <figure class="image">
                                 <img
+<<<<<<< HEAD
                                 src=${posts[visibility][post].pictures && posts[visibility][post].pictures["1"] ? posts[visibility][post].pictures["1"] : "https://source.unsplash.com/1600x900/?food"}
+=======
+                                src="https://i.pinimg.com/originals/89/8f/b5/898fb51362e50765aeb902b82f781d99.jpg"
+>>>>>>> b203e6481a2688389d5600cb6e7479a1b6a6ace3
                                 alt="Placeholder image"
                                 />
                             </figure>
@@ -332,7 +336,7 @@ function search() {
                                     <div class="left-image">
                                     <figure class="image">
                                         <img
-                                        src="https://source.unsplash.com/1600x900/?food"
+                                        src=${posts[visibility][post].pictures[1] ? posts[visibility][post].pictures[1] :"https://source.unsplash.com/1600x900/?food"}
                                         alt="Placeholder image"
                                         />
                                     </figure>
