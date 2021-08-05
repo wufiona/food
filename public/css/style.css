@@ -5,6 +5,11 @@ body {
     font-weight: 500;
 }
 
+button {
+    font-family: "Quicksand", sans-serif;
+    font-weight: 500;
+}
+
 .card {
     margin: 5px;
 }
@@ -182,6 +187,7 @@ body {
     width: 60%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 #userHeader {
@@ -240,6 +246,7 @@ border-radius: 50px;
     width: 35%;
     justify-content: space-around;
     border-radius: 5px;
+    margin: 5px;
 }
 
 #cardHolder .card-big {
@@ -322,4 +329,19 @@ border-radius: 50px;
         max-height: calc(100vh - 70px);
         margin: 0;
     }
+}
+
+.createInput {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.createInput .field {
+    width: 60%;
+}
+
+.createInput .control button {
+    background-color: #E26B28;
+    color: white;
 }
