@@ -159,3 +159,13 @@ function toggleEditProfileModal() {
     const editProfileModal = document.querySelector("#editProfileModal");
     editProfileModal.classList.toggle('is-active');
 }
+
+function signOut() {
+   firebase.auth().signOut()
+	
+   .then(function() {
+      console.log('Signout Succesfull')
+   }, function(error) {
+      console.log('Signout Failed')  
+   });
+}
