@@ -127,20 +127,20 @@ function calculateStats(posts) {
     const progressBarRes = document.querySelector("#resChallenge");
     progressBarRes.value = uniqueRes;
     const challengesHolder = document.querySelector("#challengesHolder");
-    challengesHolder.innerHTML += `<img src="https://cdn.glitch.com/8d7c1443-e6ae-466c-a2fb-143582521dfd%2F3.png?v=1628203002495" />`
+    challengesHolder.innerHTML += `<img src="images/badges/welcomeBadge.png" />`
     if (avgCost < 20) {
-        challengesHolder.innerHTML += `<img src="https://cdn.glitch.com/8d7c1443-e6ae-466c-a2fb-143582521dfd%2F2.png?v=1628202999670" />`
+        challengesHolder.innerHTML += `<img src="images/badges/superSaver.png" />`
     } else {
-        challengesHolder.innerHTML += `<img src="https://cdn.glitch.com/8d7c1443-e6ae-466c-a2fb-143582521dfd%2F1.png?v=1628202998344" />`
+        challengesHolder.innerHTML += `<img src="images/badges/superSpender.png" />`
     }
     if (fruity) {
-        challengesHolder.innerHTML += `<img src="https://cdn.glitch.com/8d7c1443-e6ae-466c-a2fb-143582521dfd%2F6.png?v=1628203005061" />`
+        challengesHolder.innerHTML += `<img src="images/badges/fruitTastic.png" />`
     }
     if (drinky) {
-        challengesHolder.innerHTML += `<img src="https://cdn.glitch.com/8d7c1443-e6ae-466c-a2fb-143582521dfd%2F5.png?v=1628203011478" />`
+        challengesHolder.innerHTML += `<img src="images/badges/drinkExpert.png" />`
     }
     if (spicy) {
-        challengesHolder.innerHTML += `<img src="https://cdn.glitch.com/8d7c1443-e6ae-466c-a2fb-143582521dfd%2F4.png?v=1628203008072" />`
+        challengesHolder.innerHTML += `<img src="images/badges/verySpicy.png" />`
     }
     const cardHolder = document.querySelector("#statsCardHolder");
     cardHolder.innerHTML +=
