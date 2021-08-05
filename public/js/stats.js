@@ -1,7 +1,10 @@
+let googleUserId;
+
 const userProfile = {
     displayName: null,
     region: null,
     blurb: null,
+    pfp: null,
 };
 
 const profileDisplayName = document.querySelector("#profileDisplayName");
@@ -13,8 +16,8 @@ const modalRegion = document.querySelector("#region")
 const modalBlurb = document.querySelector("#blurb")
 const modalPfp = document.querySelector("#pfp-modal")
 
-var futurePfp = "";
-var currentPfp = "";
+let futurePfp = "";
+let currentPfp = "";
 
 
 //const profileRegion = document.querySelector("#profileRegion")
@@ -45,7 +48,7 @@ window.onload = event => {
                     userProfile.pfp = profileItem["pfp"];
                     futurePfp = profileItem["pfp"];
                     document.querySelector("#pfp").src = userProfile.pfp;
-                    document.querySelector("#pfImage").src = userProfile.pfp; 
+                    document.querySelector("#pfImage").src = userProfile.pfp;
 
                     profileDisplayName.innerHTML = "@" + userProfile.displayName;
                     profileLocation.innerHTML = "📍" + userProfile.region;
@@ -53,7 +56,7 @@ window.onload = event => {
                     modalRegion.value = userProfile.region;
                     modalBlurb.value = userProfile.blurb;
                     modalPfp.src = userProfile.pfp;
-                    
+
                     console.log(profileItem["displayName"]);
                     console.log(profileItem["region"]);
                     console.log(profileItem["blurb"]);
@@ -185,8 +188,8 @@ function calculateStats(posts) {
                 </div> 
                 </div>
             </div>`;
-    cardHolder.innerHTML +=
-        `<div class="is-half mt-4 card">
+        cardHolder.innerHTML +=
+            `<div class="is-half mt-4 card">
             <!-- CARD -->
             <div class="card-content">
                 <div class="content">
@@ -219,8 +222,8 @@ function calculateStats(posts) {
                 </div> 
                 </div>
             </div>`;
-    cardHolder.innerHTML +=
-        `<div class="is-half mt-4 card">
+        cardHolder.innerHTML +=
+            `<div class="is-half mt-4 card">
             <!-- CARD -->
             <div class="card-content">
                 <div class="content">
@@ -238,23 +241,75 @@ function toggleEditProfileModal() {
     editProfileModal.classList.toggle('is-active');
 }
 
-function signOut() {
-   firebase.auth().signOut()
-	
-   .then(function() {
-      console.log('Signout Succesfull')
-   }, function(error) {
-      console.log('Signout Failed')  
-   });
+/// ONBOARDING PROFILE EDIT
+function editProfile() {
+    const displayName = document.querySelector('#displayName');
+    const region = document.querySelector('#region');
+    const blurb = document.querySelector('#blurb');
+
+    const data = {
+        displayName: displayName.value,
+        region: region.value,
+        blurb: blurb.value,
+        pfp: currentPfp,
+    }
+
+    // 2. Validate Data
+    for (const prop in data) {
+        console.log(`${prop}: ${data[prop]}`);
+        if (data[prop] == "" || typeof data[prop] == undefined) {
+            alert(`Please enter a valid input for ${prop}.`)
+            return 1;
+        }
+    }
+
+    // 3. Format the data and write it to our database
+    firebase.database().ref(`users/${googleUserId}/profile`).update(data)
+        // 4. Clear the form so that we can write a new note
+        .then(() => {
+            console.log(data)
+            // Update local variables
+            userProfile.displayName = data.displayName;
+            userProfile.region = data.region;
+            userProfile.blurb = data.blurb;
+            userProfile.pfp = data.pfp;
+
+            // Alert user post is created
+            // TODO - we should replace eventually lol
+
+            document.querySelector("#pfp").src = userProfile.pfp;
+            document.querySelector("#pfImage").src = userProfile.pfp;
+
+            profileDisplayName.innerHTML = "@" + userProfile.displayName;
+            profileLocation.innerHTML = "📍" + userProfile.region;
+            modalDisplayName.value = userProfile.displayName;
+            modalRegion.value = userProfile.region;
+            modalBlurb.value = userProfile.blurb;
+            modalPfp.src = userProfile.pfp;
+
+            alert("Profile is updated!")
+        });
+    const editProfileModal = document.querySelector("#editProfileModal");
+    editProfileModal.classList.toggle('is-active');
 }
 
-document.querySelector("#refresh").addEventListener("click", function(){
+function signOut() {
+    firebase.auth().signOut()
+
+        .then(function () {
+            console.log('Signout Succesfull')
+        }, function (error) {
+            console.log('Signout Failed')
+        });
+}
+
+document.querySelector("#refresh").addEventListener("click", function () {
     currentPfp = futurePfp;
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://source.unsplash.com/user/lilkatsu/likes/', true);
     xhr.onload = function () {
-        console.log(xhr.responseURL); 
-        futurePfp = xhr.responseURL   
+        console.log(xhr.responseURL);
+        futurePfp = xhr.responseURL
     };
     xhr.send(null);
     document.getElementById("pfp-modal").src = futurePfp;

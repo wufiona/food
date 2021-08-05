@@ -1,6 +1,6 @@
 console.log("code running")
-var futurePfp = "https://images.unsplash.com/photo-1533910534207-90f31029a78e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80";
-var currentPfp = "";
+let futurePfp = "https://images.unsplash.com/photo-1533910534207-90f31029a78e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80";
+let currentPfp = "";
 
 let googleUserId;
 const userProfile = {
