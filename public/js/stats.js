@@ -48,7 +48,7 @@ window.onload = event => {
                     document.querySelector("#pfImage").src = userProfile.pfp; 
 
                     profileDisplayName.innerHTML = "@" + userProfile.displayName;
-                    profileLocation.innerHTML = userProfile.region;
+                    profileLocation.innerHTML = "📍" + userProfile.region;
                     modalDisplayName.value = userProfile.displayName;
                     modalRegion.value = userProfile.region;
                     modalBlurb.value = userProfile.blurb;
