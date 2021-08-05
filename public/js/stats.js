@@ -37,6 +37,7 @@ window.onload = event => {
                     userProfile.region = profileItem["region"]
                     userProfile.blurb = profileItem["blurb"]
 
+                    profileDisplayName.innerHTML = userProfile.displayName
                     modalDisplayName.value = userProfile.displayName
                     modalRegion.value = userProfile.region
                     modalBlurb.value = userProfile.blurb
