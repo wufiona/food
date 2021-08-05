@@ -244,12 +244,14 @@ border-radius: 50px;
 }
 
 #challengesHolder {
-    background-color: black;
+    background-color: #F5B28D;
     height: 200px;
-    width: 35%;
+    width: 30%;
     justify-content: space-around;
     border-radius: 5px;
-    margin: 5px;
+    margin: 1em;
+    margin-right: 2%;
+    margin-left: 2%;
 }
 
 #cardHolder .card-big {
@@ -402,4 +404,38 @@ border-radius: 50px;
 }
 .hero-body .container .columns .column h2 {
     color: #FFFAEE!important;
+.modal-card-foot button {
+    margin-left: 5px;
+}
+
+#personInfo {
+    background-color: #ebe1ce;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+#personInfo img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    object-fit: cover;
+}
+
+.split {
+    display: flex;
+    align-items: center;
+}
+
+.split-right {
+    margin-left: 5px;
+}
+
+.right-panel {
+    margin: 15px;
+    margin-right: 3%;
+    /* need to update with min width */
+}
+
+.right-panel button {
+    margin: 15px;
 }
