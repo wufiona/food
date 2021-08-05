@@ -46,6 +46,7 @@ function findRandomUser(allUserIds){
 function displayPost(post) {
     console.log(post);
     const cardHolder = document.querySelector("#cardHolder")
+    let star = "⭐️";
     cardHolder.innerHTML ="";
     cardHolder.innerHTML =
                 `      <div class="card-big">
@@ -82,7 +83,7 @@ function displayPost(post) {
               </p>
               <p class="is-1">${post.location}</p>
               <p class="is-1">
-                 Rating: ${post.rating} | Cost: $${post.cost} | Mood: ${post.mood}
+                 Rating: ${star.repeat(post.rating)} | Cost: $${post.cost} | Mood: ${post.mood}
               </p>
             </div>
           </div>
