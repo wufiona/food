@@ -148,12 +148,9 @@ button {
 }
 
 #cardHolder {
-  width: 100%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  position: relative;
-  top: 15px;
 }
 
 @media (max-width:420px) {
@@ -241,7 +238,7 @@ border-radius: 50px;
 
 .sidebyside {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     width: 100%;
 }
 
@@ -463,9 +460,7 @@ border-radius: 50px;
 }
 
 .right-panel {
-    margin: 15px;
-    margin-right: 3%;
-    /* need to update with min width */
+    margin: 10px;
 }
 
 .right-panel button {
@@ -514,4 +509,9 @@ border-radius: 50px;
     border-radius:50%;
     object-fit: cover;
     overflow: hidden;
+}
+
+.cardHolderRelative {
+    position: relative;
+    top: 15px;
 }

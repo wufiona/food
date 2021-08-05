@@ -112,7 +112,7 @@ function displayRandomUser(profile) {
     let star = "⭐️";
     profileHolder.innerHTML ="";
     profileHolder.innerHTML =
-                `<div id="personInfo">
+                `
                     <div class="split">
                         <img class=pfp-info-card src="${profile.pfp}" />
                         <div class="split-right">
@@ -122,7 +122,7 @@ function displayRandomUser(profile) {
                     </div>
                     <p class="subtitle"> ${profile.blurb}</p>
                     <p class="subtitle">join date!</p>
-                </div>
+                
 `;
 }
 
