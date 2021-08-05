@@ -215,14 +215,17 @@ body {
     font-size: 2vw;
 }
 
-#editImage {
+#editButton {
     width: 3vw;
     height: 3vw;
     border-radius: 1.5vw;
     position: relative;
     top: -18vw;
     left: 5vw;
-    position:relative;  
+    position:relative; 
+    border: none;
+    background: #FFC61E;
+border-radius: 50px;
 }
 
 .sidebyside {
