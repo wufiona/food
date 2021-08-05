@@ -4,7 +4,8 @@ const userProfile = {
     blurb: null,
 };
 
-const profileDisplayName = document.querySelector("#profileDisplayName")
+const profileDisplayName = document.querySelector("#profileDisplayName");
+const profileLocation = document.querySelector("#profileLocation");
 
 // Modal input
 const modalDisplayName = document.querySelector("#displayName")
@@ -31,20 +32,21 @@ window.onload = event => {
             profileRef.on("value", (snapshot) => {
                 const profileItem = snapshot.val();
                 if (profileItem !== null) {
-                    console.log("found profile!!")
-                    console.log(profileItem)
+                    console.log("found profile!!");
+                    console.log(profileItem);
                     userProfile.displayName = profileItem["displayName"];
-                    userProfile.region = profileItem["region"]
-                    userProfile.blurb = profileItem["blurb"]
+                    userProfile.region = profileItem["region"];
+                    userProfile.blurb = profileItem["blurb"];
 
-                    profileDisplayName.innerHTML = userProfile.displayName
-                    modalDisplayName.value = userProfile.displayName
-                    modalRegion.value = userProfile.region
-                    modalBlurb.value = userProfile.blurb
+                    profileDisplayName.innerHTML = "@" + userProfile.displayName;
+                    profileLocation.innerHTML = userProfile.region;
+                    modalDisplayName.value = userProfile.displayName;
+                    modalRegion.value = userProfile.region;
+                    modalBlurb.value = userProfile.blurb;
                     
-                    console.log(profileItem["displayName"])
-                    console.log(profileItem["region"])
-                    console.log(profileItem["blurb"])
+                    console.log(profileItem["displayName"]);
+                    console.log(profileItem["region"]);
+                    console.log(profileItem["blurb"]);
                 }
             })
 
