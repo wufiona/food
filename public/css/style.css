@@ -493,3 +493,11 @@ border-radius: 50px;
     transform: translateX(-50%);
   }
 }
+
+#pfp{
+    width:48px;
+    height:48px;
+    background-size:contain;
+    background-position:center;
+    border-radius:50%;
+}

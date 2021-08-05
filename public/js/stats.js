@@ -11,6 +11,11 @@ const profileLocation = document.querySelector("#profileLocation");
 const modalDisplayName = document.querySelector("#displayName")
 const modalRegion = document.querySelector("#region")
 const modalBlurb = document.querySelector("#blurb")
+const modalPfp = document.querySelector("#pfp-modal")
+
+var futurePfp = "";
+var currentPfp = "";
+
 
 //const profileRegion = document.querySelector("#profileRegion")
 //const profileBlurb = document.querySelector("#profileBlurb")
@@ -37,12 +42,17 @@ window.onload = event => {
                     userProfile.displayName = profileItem["displayName"];
                     userProfile.region = profileItem["region"];
                     userProfile.blurb = profileItem["blurb"];
+                    userProfile.pfp = profileItem["pfp"];
+                    futurePfp = profileItem["pfp"];
+                    document.querySelector("#pfp").src = userProfile.pfp;
+                    document.querySelector("#pfImage").src = userProfile.pfp; 
 
                     profileDisplayName.innerHTML = "@" + userProfile.displayName;
                     profileLocation.innerHTML = userProfile.region;
                     modalDisplayName.value = userProfile.displayName;
                     modalRegion.value = userProfile.region;
                     modalBlurb.value = userProfile.blurb;
+                    modalPfp.src = userProfile.pfp;
                     
                     console.log(profileItem["displayName"]);
                     console.log(profileItem["region"]);
@@ -171,3 +181,15 @@ function signOut() {
       console.log('Signout Failed')  
    });
 }
+
+document.querySelector("#refresh").addEventListener("click", function(){
+    currentPfp = futurePfp;
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://source.unsplash.com/user/lilkatsu/likes/', true);
+    xhr.onload = function () {
+        console.log(xhr.responseURL); 
+        futurePfp = xhr.responseURL   
+    };
+    xhr.send(null);
+    document.getElementById("pfp-modal").src = futurePfp;
+});

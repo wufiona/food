@@ -26,7 +26,9 @@ window.onload = event => {
                     userProfile.displayName = profileItem["displayName"];
                     userProfile.region = profileItem["region"]
                     userProfile.blurb = profileItem["blurb"]
-
+                    userProfile.pfp = profileItem["pfp"]
+                    document.querySelector("#pfp").src = userProfile.pfp; 
+                    
                     console.log(profileItem["displayName"])
                     console.log(profileItem["region"])
                     console.log(profileItem["blurb"])
@@ -263,6 +265,7 @@ function createProfile() {
             userProfile.region = data.region;
             userProfile.blurb = data.blurb;
             userProfile.pfp = data.pfp;
+            
 
             // Reset to default values
             displayName.value = "";

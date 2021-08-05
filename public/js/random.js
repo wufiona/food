@@ -14,6 +14,14 @@ window.onload = event => {
                 users = snapshot.val();
                 findRandomPost();
             })
+            const profileRef = firebase.database().ref(`users/${googleUserId}/profile`);
+            profileRef.on("value", (snapshot) => {
+                console.log("hello")
+                const profileItem = snapshot.val();
+                if (profileItem !== null) {
+                    document.querySelector("#pfp").src = profileItem["pfp"];
+                }
+            })
         } else {
             // if not logged in, navigate back to login page.
             window.location = 'index.html'; 
@@ -26,6 +34,7 @@ document.getElementById("refreshExplore").addEventListener("click", findRandomPo
 function findRandomPost() {
     var allUserIds = Object.keys(users);
     var randomUser = findRandomUser(allUserIds);
+    displayRandomUser(users[randomUser][profile])
     userPosts =  users[randomUser]["posts"]["public"];
     var allPostIds = Object.keys(userPosts);
     console.log(userPosts);
@@ -45,6 +54,60 @@ function findRandomUser(allUserIds){
 
 function displayPost(post) {
     console.log(post);
+    const cardHolder = document.querySelector("#cardHolder")
+    let star = "⭐️";
+    cardHolder.innerHTML ="";
+    cardHolder.innerHTML =
+                `      <div class="card-big">
+        <div class="card-content">
+          <div class="images">
+            <div class="left-image-big">
+              <figure class="image">
+                <img
+                  src="https://thumbor.thedailymeal.com/O5BS3X-3J3JKcsTKYdYd996xqsI=/870x565/https://www.thedailymeal.com/sites/default/files/slideshows/1943277/2108053/0.jpg"
+                  alt="Placeholder image"
+                />
+              </figure>
+            </div>
+            <div class="right-images-big">
+              <figure class="image">
+                <img
+                  src="https://thumbor.thedailymeal.com/O5BS3X-3J3JKcsTKYdYd996xqsI=/870x565/https://www.thedailymeal.com/sites/default/files/slideshows/1943277/2108053/0.jpg"
+                 alt="Placeholder image"
+                />
+              </figure>
+              <figure class="image">
+                <img
+                  src="https://keyassets.timeincuk.net/inspirewp/live/wp-content/uploads/sites/34/2020/02/Spain-restaurants.jpg"
+                  alt="Placeholder image"
+                />
+              </figure>
+            </div>
+          </div>
+          <div class="media">
+            <div class="media-content">
+              <br />
+              <p class="removeMarginB title is-1">
+                ${post.title}
+              </p>
+              <p class="is-1">${post.location}</p>
+              <p class="is-1">
+                 Rating: ${star.repeat(post.rating)} | Cost: $${post.cost} | Mood: ${post.mood}
+              </p>
+            </div>
+          </div>
+          <div class="content">
+            ${post.description}
+            <br />
+            <br />
+            <time datetime="${post.date}">${post.date}</time>
+          </div>
+        </div>
+      </div>`;
+}
+
+function displayRandomUser(profile) {
+    console.log(profile);
     const cardHolder = document.querySelector("#cardHolder")
     let star = "⭐️";
     cardHolder.innerHTML ="";
