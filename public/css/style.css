@@ -425,6 +425,12 @@ iframe {
 }
 .hero-body .container .columns .column {
     padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.hero-body .container .columns .column .image {
+    margin-bottom: 24px;
 }
 .hero-body .container .columns .column h1 {
     color: #FFFAEE!important;
