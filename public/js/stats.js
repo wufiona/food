@@ -128,34 +128,35 @@ function calculateStats(posts) {
             <!-- CARD -->
             <div class="card-content">
                 <div class="content">
-                    <p class="title is-1">${avgRating.toFixed(2)}</p>
-                    <p class="subtitle is-6">average rating</p>
-                </div>
-            </div> 
-            </div>
-        </div>`;
-    cardHolder.innerHTML +=
-        `<div class="is-half mt-4 card">
-            <!-- CARD -->
-            <div class="card-content">
-                <div class="content">
-                    <p class="title is-1">$${avgCost.toFixed(2)}</p>
-                    <p class="subtitle is-6">average cost</p>
-                </div>
-            </div> 
-            </div>
-        </div>`;
-    cardHolder.innerHTML +=
-        `<div class="is-half mt-4 card">
-            <!-- CARD -->
-            <div class="card-content">
-                <div class="content">
                     <p class="title is-1">${uniqueRes}</p>
                     <p class="subtitle is-6">restaurant(s)</p>
                 </div>
             </div> 
             </div>
         </div>`;
+    if (numberOfPosts != 0) {
+        cardHolder.innerHTML +=
+            `<div class="is-half mt-4 card">
+                <!-- CARD -->
+                <div class="card-content">
+                    <div class="content">
+                        <p class="title is-1">${avgRating.toFixed(2)}</p>
+                        <p class="subtitle is-6">average rating</p>
+                    </div>
+                </div> 
+                </div>
+            </div>`;
+        cardHolder.innerHTML +=
+            `<div class="is-half mt-4 card">
+                <!-- CARD -->
+                <div class="card-content">
+                    <div class="content">
+                        <p class="title is-1">$${avgCost.toFixed(2)}</p>
+                        <p class="subtitle is-6">average cost</p>
+                    </div>
+                </div> 
+                </div>
+            </div>`;
     cardHolder.innerHTML +=
         `<div class="is-half mt-4 card">
             <!-- CARD -->
@@ -167,6 +168,41 @@ function calculateStats(posts) {
             </div> 
             </div>
         </div>`;
+    } else {
+        cardHolder.innerHTML +=
+            `<div class="is-half mt-4 card">
+                <!-- CARD -->
+                <div class="card-content">
+                    <div class="content">
+                        <p class="title is-1">N/A</p>
+                        <p class="subtitle is-6">average rating</p>
+                    </div>
+                </div> 
+                </div>
+            </div>`;
+        cardHolder.innerHTML +=
+            `<div class="is-half mt-4 card">
+                <!-- CARD -->
+                <div class="card-content">
+                    <div class="content">
+                        <p class="title is-1">N/A</p>
+                        <p class="subtitle is-6">average cost</p>
+                    </div>
+                </div> 
+                </div>
+            </div>`;
+    cardHolder.innerHTML +=
+        `<div class="is-half mt-4 card">
+            <!-- CARD -->
+            <div class="card-content">
+                <div class="content">
+                    <p class="title is-1">N/A</p>
+                    <p class="subtitle is-6">instances of N/A</p>
+                </div>
+            </div> 
+            </div>
+        </div>`;
+    }
 }
 
 function toggleEditProfileModal() {
