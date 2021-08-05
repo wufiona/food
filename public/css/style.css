@@ -338,6 +338,15 @@ border-radius: 50px;
   margin-right: auto;
   display: block;
 }
+.pfp-info-card{
+width: 150px;
+  height: 150px;
+  position: relative;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 50%;
+  display: block;
+}
 
 #refresh{
     position: absolute;
@@ -432,6 +441,7 @@ border-radius: 50px;
     background-color: #ebe1ce;
     border-radius: 5px;
     padding: 15px;
+    width: 30vw;
 }
 
 #personInfo img {
