@@ -73,6 +73,9 @@ function calculateStats(posts) {
     let sumCosts = 0;
     let resturaunts = [];
     let moodDict = {};
+    let fruity = false;
+    let drinky = false;
+    let spicy = false;
     for (let visibility in posts) {
         for (let post in posts[visibility]) {
             console.log(posts[visibility][post].rating)
@@ -91,6 +94,15 @@ function calculateStats(posts) {
                 moodDict[mood] += 1;
             } else {
                 moodDict[mood] = 1;
+            }
+            if (posts[visibility][post].title.includes("fruit") || posts[visibility][post].description.includes("fruit") || posts[visibility][post].location.includes("fruit")) {
+                fruity = true;
+            }
+            if (posts[visibility][post].title.includes("drink") || posts[visibility][post].description.includes("drink") || posts[visibility][post].location.includes("drink")) {
+                drinky = true;
+            }
+            if (posts[visibility][post].title.includes("spicy") || posts[visibility][post].description.includes("spicy") || posts[visibility][post].location.includes("spicy")) {
+                spicy = true;
             }
         }
     }
@@ -111,6 +123,22 @@ function calculateStats(posts) {
     let star = "⭐️";
     const progressBarRes = document.querySelector("#resChallenge");
     progressBarRes.value = uniqueRes;
+    const challengesHolder = document.querySelector("#challengesHolder");
+    challengesHolder.innerHTML += `<img src="https://cdn.glitch.com/8d7c1443-e6ae-466c-a2fb-143582521dfd%2F3.png?v=1628203002495" />`
+    if (avgCost < 20) {
+        challengesHolder.innerHTML += `<img src="https://cdn.glitch.com/8d7c1443-e6ae-466c-a2fb-143582521dfd%2F2.png?v=1628202999670" />`
+    } else {
+        challengesHolder.innerHTML += `<img src="https://cdn.glitch.com/8d7c1443-e6ae-466c-a2fb-143582521dfd%2F1.png?v=1628202998344" />`
+    }
+    if (fruity) {
+        challengesHolder.innerHTML += `<img src="https://cdn.glitch.com/8d7c1443-e6ae-466c-a2fb-143582521dfd%2F6.png?v=1628203005061" />`
+    }
+    if (drinky) {
+        challengesHolder.innerHTML += `<img src="https://cdn.glitch.com/8d7c1443-e6ae-466c-a2fb-143582521dfd%2F5.png?v=1628203011478" />`
+    }
+    if (spicy) {
+        challengesHolder.innerHTML += `<img src="https://cdn.glitch.com/8d7c1443-e6ae-466c-a2fb-143582521dfd%2F4.png?v=1628203008072" />`
+    }
     const cardHolder = document.querySelector("#statsCardHolder");
     cardHolder.innerHTML +=
         `<div class="is-half mt-4 card">
