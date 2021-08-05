@@ -540,3 +540,7 @@ iframe {
     justify-content: center;
     margin-top: 10px;;
 }
+
+#challengesHolder img {
+    width: 45%;
+}
