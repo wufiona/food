@@ -321,7 +321,11 @@ border-radius: 50px;
     color: #FFFAEE!important;
 }
 
-.pfp-modal{
+.pfp-div{
+    position: relative;
+}
+
+#pfp-modal{
   width: 200px;
   height: 200px;
   position: relative;
@@ -334,10 +338,24 @@ border-radius: 50px;
 }
 
 #refresh{
-    display: block;
-    margin-left: calc(50% + 50px);
+    position: absolute;
+    bottom:0;
+    right:4px;
     color:  #FFFAEE!important;
     font-size: 48px;
+      position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: -100px;
+    top: 150px;
+    width: 0%;
+}
+
+.modal-header{
+    text-align: center;
+    color:  #FFFAEE!important;
+    font-size: 80px;
+    font-weight: bold;
 }
 
 @media (max-width: 768px) {

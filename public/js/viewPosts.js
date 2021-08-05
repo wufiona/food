@@ -1,4 +1,6 @@
 console.log("code running")
+var futurePfp = "https://images.unsplash.com/photo-1533910534207-90f31029a78e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80";
+var currentPfp = "";
 
 let googleUserId;
 const userProfile = {
@@ -240,6 +242,7 @@ function createProfile() {
         displayName: displayName.value,
         region: region.value,
         blurb: blurb.value,
+        pfp: currentPfp,
     }
 
     // 2. Validate Data
@@ -259,6 +262,7 @@ function createProfile() {
             userProfile.displayName = data.displayName;
             userProfile.region = data.region;
             userProfile.blurb = data.blurb;
+            userProfile.pfp = data.pfp;
 
             // Reset to default values
             displayName.value = "";
@@ -282,3 +286,15 @@ function signOut() {
       console.log('Signout Failed')  
    });
 }
+
+document.querySelector("#refresh").addEventListener("click", function(){
+    currentPfp = futurePfp;
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://source.unsplash.com/user/lilkatsu/likes/', true);
+    xhr.onload = function () {
+        console.log(xhr.responseURL); 
+        futurePfp = xhr.responseURL   
+    };
+    xhr.send(null);
+    document.getElementById("pfp-modal").src = futurePfp;
+});
