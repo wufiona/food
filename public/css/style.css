@@ -212,6 +212,9 @@ button {
     top: -16vw;
     left: 10vw;
 }
+#pfName p {
+    color: #FFFAEE!important;
+}
 
 .name {
     font-size: 3vw;
