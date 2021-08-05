@@ -308,10 +308,17 @@ function search() {
     const search = document.querySelector("#searchBar").value;
     const postsRef = firebase.database().ref(`users/${googleUserId}/posts`);
     const cardHolder = document.querySelector("#cardHolder")
+    const buttonHolder = document.querySelector("#buttonHolder");
     let star = "⭐️";
-    cardHolder.innerHTML = "";
     postsRef.on("value", (snapshot) => {
         const posts = snapshot.val();
+        console.log(posts);
+        cardHolder.innerHTML = "";
+        if (search === "") {
+            buttonHolder.innerHTML = "";
+        } else {
+            buttonHolder.innerHTML = `<button class="button" id="clear" onclick="resetSearch()">clear search</button>`;
+        }
         for (let visibility in posts) {
             for (let post in posts[visibility]) {
                 if (posts[visibility][post].title.includes(search) || posts[visibility][post].description.includes(search) || posts[visibility][post].location.includes(search)) {
@@ -365,4 +372,9 @@ function search() {
             }
         }
     });
+}
+
+function resetSearch() {
+    document.querySelector("#searchBar").value = "";
+    search();
 }

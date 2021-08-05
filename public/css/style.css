@@ -515,3 +515,14 @@ border-radius: 50px;
     position: relative;
     top: 15px;
 }
+
+#cardHolder #clear {
+    margin: 10px;
+    position: static;
+}
+
+#buttonHolder {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;;
+}
