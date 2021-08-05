@@ -272,3 +272,4 @@ function createProfile() {
     const onboardingModal = document.querySelector("#onboardingModal");
     onboardingModal.classList.toggle('is-active');
 }
+

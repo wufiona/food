@@ -307,6 +307,26 @@ body {
 .modal-card-body label {
     color: #FFFAEE!important;
 }
+
+.pfp-modal{
+  width: 200px;
+  height: 200px;
+  position: relative;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+#refresh{
+    display: block;
+    margin-left: calc(50% + 50px);
+    color:  #FFFAEE!important;
+    font-size: 48px;
+}
+
 @media (max-width: 768px) {
     .modal-background {
         display: none;
