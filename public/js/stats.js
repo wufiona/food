@@ -108,7 +108,9 @@ function calculateStats(posts) {
     let avgRating = sumRatings / numberOfPosts;
     let avgCost = sumCosts / numberOfPosts;
     console.log(avgRating);
-    let star = "⭐️"
+    let star = "⭐️";
+    const progressBarRes = document.querySelector("#resChallenge");
+    progressBarRes.value = uniqueRes;
     const cardHolder = document.querySelector("#statsCardHolder");
     cardHolder.innerHTML +=
         `<div class="is-half mt-4 card">
