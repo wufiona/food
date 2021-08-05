@@ -8,6 +8,13 @@ window.onload = event => {
             postsRef.on("value", (snapshot) => {
                 const posts = snapshot.val();
             })
+            profileRef.on("value", (snapshot) => {
+                console.log("hello")
+                const profileItem = snapshot.val();
+                if (profileItem !== null) {
+                    document.querySelector("#pfp").src = profileItem["pfp"];
+                }
+            })
         } else {
             // if not logged in, navigate back to login page.
             window.location = 'index.html';
