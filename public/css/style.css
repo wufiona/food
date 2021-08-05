@@ -178,6 +178,10 @@ button {
     background-color: #ebe1ce !important;
     border-radius: 5px;
     width:30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #statsCardHolder {
