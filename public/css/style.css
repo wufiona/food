@@ -383,6 +383,7 @@ border-radius: 50px;
     margin: 0 75px;
     border-radius: 25px;
     padding: 0;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 }
 .hero-body .container .columns img {
     padding: 0!important;
@@ -404,6 +405,7 @@ border-radius: 50px;
 }
 .hero-body .container .columns .column h2 {
     color: #FFFAEE!important;
+}
 .modal-card-foot button {
     margin-left: 5px;
 }
