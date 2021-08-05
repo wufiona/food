@@ -1,5 +1,7 @@
 console.log("createPost running")
 let googleUserId;
+let itemsUploaded = 0;
+let pictureData;
 
 window.onload = event => {
     // retains user state between html pages.
@@ -16,12 +18,35 @@ window.onload = event => {
                     document.querySelector("#pfp").src = profileItem["pfp"];
                 }
             })
+            
         } else {
             // if not logged in, navigate back to login page.
             window.location = 'index.html';
         };
     });
-}
+    const client = filestack.init("ALpTDTkiRLv9PTnWuopgCz");
+    const options = {
+        fromSources: ["local_file_system","url", "imagesearch", "instagram", "unsplash"],
+        accept: ["image/*"],
+        displayMode: 'inline',
+        container: '#fieldImage', 
+        maxFiles: 3,
+        onFileSelected: file => {
+            if (file.size > 1000 * 1000) {
+                throw new Error('File too big, select something smaller than 1MB');
+            }
+        },
+        onUploadDone: PickerUploadDoneCallback => {
+            console.log(PickerUploadDoneCallback.filesUploaded);
+            pictureData = [];
+            for (i=0; i < PickerUploadDoneCallback.filesUploaded.length; i++){
+                pictureData.push(PickerUploadDoneCallback.filesUploaded[i].url);
+            }
+        },
+    }
+    client.picker(options).open();
+    };
+    
 const handlePostSubmit = () => {
     /*
         title: string, 
@@ -65,6 +90,7 @@ const handlePostSubmit = () => {
             mood: mood.value,
             description: description.value,
             location: location.value,
+            pictures: pictureData,
         }
 
         // 2. Validate Data
@@ -75,7 +101,7 @@ const handlePostSubmit = () => {
                 return 1;
             }
         }
-
+        
         // 3. Format the data and write it to our database
         firebase.database().ref(`users/${googleUserId}/posts/${isPrivate ? "private" : "public"}`).push(data)
             // 4. Clear the form so that we can write a new note

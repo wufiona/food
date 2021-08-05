@@ -64,7 +64,7 @@ function displayPost(post) {
             <div class="left-image-big">
               <figure class="image">
                 <img
-                  src="https://thumbor.thedailymeal.com/O5BS3X-3J3JKcsTKYdYd996xqsI=/870x565/https://www.thedailymeal.com/sites/default/files/slideshows/1943277/2108053/0.jpg"
+                  src=${post.pictures && post.pictures["0"] ? post.pictures["0"] : "https://source.unsplash.com/1600x900/?food"}
                   alt="Placeholder image"
                 />
               </figure>
@@ -72,13 +72,13 @@ function displayPost(post) {
             <div class="right-images-big">
               <figure class="image">
                 <img
-                  src="https://thumbor.thedailymeal.com/O5BS3X-3J3JKcsTKYdYd996xqsI=/870x565/https://www.thedailymeal.com/sites/default/files/slideshows/1943277/2108053/0.jpg"
+                  src=${post.pictures && post.pictures["1"] ? post.pictures["1"] : "https://source.unsplash.com/1600x900/?food"}
                  alt="Placeholder image"
                 />
               </figure>
               <figure class="image">
                 <img
-                  src="https://keyassets.timeincuk.net/inspirewp/live/wp-content/uploads/sites/34/2020/02/Spain-restaurants.jpg"
+                  src=${post.pictures && post.pictures["2"] ? post.pictures["2"] : "https://source.unsplash.com/1600x900/?food"}
                   alt="Placeholder image"
                 />
               </figure>

@@ -67,6 +67,7 @@ function displayPosts(posts) {
     let star = "⭐️";
     for (let visibility in posts) {
         for (let post in posts[visibility]) {
+            console.log(posts[visibility][post].pictures && posts[visibility][post].pictures["0"] ? posts[visibility][post].pictures["0"] : "https://source.unsplash.com/1600x900/?food")
             cardHolder.innerHTML +=
                 // `<div class="is-half mt-4 card">
                 //     <!-- CARD -->
@@ -92,7 +93,7 @@ function displayPosts(posts) {
                             <div class="left-image">
                             <figure class="image">
                                 <img
-                                src="https://thumbor.thedailymeal.com/O5BS3X-3J3JKcsTKYdYd996xqsI=/870x565/https://www.thedailymeal.com/sites/default/files/slideshows/1943277/2108053/0.jpg"
+                                src=${posts[visibility][post].pictures && posts[visibility][post].pictures["0"] ? posts[visibility][post].pictures["0"] : "https://source.unsplash.com/1600x900/?food"}
                                 alt="Placeholder image"
                                 />
                             </figure>
@@ -100,13 +101,13 @@ function displayPosts(posts) {
                             <div class="right-images">
                             <figure class="image">
                                 <img
-                                src="https://lh3.googleusercontent.com/proxy/5104TtV0zUcP6TBoJIGXox29gkw3eR5V5pgnSdlnStV4qkHfzmUaaNLiG65z1GE29Du6qzY-NzJbkW9cvBHVRPVTurRpCLtZtNo9Ii-TtEMfVW2gBQ"
+                                src=${posts[visibility][post].pictures && posts[visibility][post].pictures["1"] ? posts[visibility][post].pictures["1"] : "https://source.unsplash.com/1600x900/?food"}
                                 alt="Placeholder image"
                                 />
                             </figure>
                             <figure class="image">
                                 <img
-                                src="https://keyassets.timeincuk.net/inspirewp/live/wp-content/uploads/sites/34/2020/02/Spain-restaurants.jpg"
+                                src=${posts[visibility][post].pictures && posts[visibility][post].pictures["2"] ? posts[visibility][post].pictures["2"] : "https://source.unsplash.com/1600x900/?food"}
                                 alt="Placeholder image"
                                 />
                             </figure>
@@ -321,6 +322,7 @@ function search() {
         }
         for (let visibility in posts) {
             for (let post in posts[visibility]) {
+                console.log("posts pictures?" + posts[visibility][post].pictures[1]);
                 if (posts[visibility][post].title.includes(search) || posts[visibility][post].description.includes(search) || posts[visibility][post].location.includes(search)) {
                     cardHolder.innerHTML +=
                         `
@@ -330,7 +332,7 @@ function search() {
                                     <div class="left-image">
                                     <figure class="image">
                                         <img
-                                        src="https://thumbor.thedailymeal.com/O5BS3X-3J3JKcsTKYdYd996xqsI=/870x565/https://www.thedailymeal.com/sites/default/files/slideshows/1943277/2108053/0.jpg"
+                                        src="https://source.unsplash.com/1600x900/?food"
                                         alt="Placeholder image"
                                         />
                                     </figure>
@@ -338,13 +340,13 @@ function search() {
                                     <div class="right-images">
                                     <figure class="image">
                                         <img
-                                        src="https://lh3.googleusercontent.com/proxy/5104TtV0zUcP6TBoJIGXox29gkw3eR5V5pgnSdlnStV4qkHfzmUaaNLiG65z1GE29Du6qzY-NzJbkW9cvBHVRPVTurRpCLtZtNo9Ii-TtEMfVW2gBQ"
+                                        src=${posts[visibility][post].pictures[1] ? posts[visibility][post].pictures[1] :"https://source.unsplash.com/1600x900/?food"}
                                         alt="Placeholder image"
                                         />
                                     </figure>
                                     <figure class="image">
                                         <img
-                                        src="https://keyassets.timeincuk.net/inspirewp/live/wp-content/uploads/sites/34/2020/02/Spain-restaurants.jpg"
+                                        src=${posts[visibility][post].pictures[2] ? posts[visibility][post].pictures[2] : "https://source.unsplash.com/1600x900/?food"}
                                         alt="Placeholder image"
                                         />
                                     </figure>
