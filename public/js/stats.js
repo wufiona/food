@@ -17,7 +17,7 @@ const modalBlurb = document.querySelector("#blurb")
 const modalPfp = document.querySelector("#pfp-modal")
 
 let futurePfp = "";
-let currentPfp = "";
+let currentPfp = document.querySelector("#pfImage").src;
 
 
 //const profileRegion = document.querySelector("#profileRegion")
@@ -28,7 +28,7 @@ window.onload = event => {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             console.log('Logged in as: ' + user.displayName);
-            const googleUserId = user.uid;
+            googleUserId = user.uid;
             const postsRef = firebase.database().ref(`users/${googleUserId}/posts`);
             postsRef.on("value", (snapshot) => {
                 const posts = snapshot.val();
@@ -251,7 +251,7 @@ function editProfile() {
         displayName: displayName.value,
         region: region.value,
         blurb: blurb.value,
-        pfp: currentPfp,
+        pfp: currentPfp
     }
 
     // 2. Validate Data
@@ -262,12 +262,12 @@ function editProfile() {
             return 1;
         }
     }
-
+    console.log(googleUserId);
     // 3. Format the data and write it to our database
-    firebase.database().ref(`users/${googleUserId}/profile`).update(data)
+    firebase.database().ref(`users/${googleUserId}/profile`).set(data)
         // 4. Clear the form so that we can write a new note
         .then(() => {
-            console.log(data)
+            console.log(data);
             // Update local variables
             userProfile.displayName = data.displayName;
             userProfile.region = data.region;

@@ -338,7 +338,7 @@ function search() {
                                     <div class="right-images">
                                     <figure class="image">
                                         <img
-                                        src="https://lh3.googleusercontent.com/proxy/5104TtV0zUcP6TBoJIGXox29gkw3eR5V5pgnSdlnStV4qkHfzmUaaNLiG65z1GE29Du6qzY-NzJbkW9cvBHVRPVTurRpCLtZtNo9Ii-TtEMfVW2gBQ"
+                                        src="https://i.pinimg.com/originals/89/8f/b5/898fb51362e50765aeb902b82f781d99.jpg"
                                         alt="Placeholder image"
                                         />
                                     </figure>
