@@ -5,6 +5,11 @@ body {
     font-weight: 500;
 }
 
+button {
+    font-family: "Quicksand", sans-serif;
+    font-weight: 500;
+}
+
 .card {
     margin: 5px;
 }
@@ -182,6 +187,7 @@ body {
     width: 60%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 #userHeader {
@@ -206,6 +212,9 @@ body {
     top: -16vw;
     left: 10vw;
 }
+#pfName p {
+    color: #FFFAEE!important;
+}
 
 .name {
     font-size: 3vw;
@@ -215,14 +224,17 @@ body {
     font-size: 2vw;
 }
 
-#editImage {
+#editButton {
     width: 3vw;
     height: 3vw;
     border-radius: 1.5vw;
     position: relative;
     top: -18vw;
     left: 5vw;
-    position:relative;  
+    position:relative; 
+    border: none;
+    background: #FFC61E;
+border-radius: 50px;
 }
 
 .sidebyside {
@@ -237,6 +249,7 @@ body {
     width: 35%;
     justify-content: space-around;
     border-radius: 5px;
+    margin: 5px;
 }
 
 #cardHolder .card-big {
@@ -339,4 +352,24 @@ body {
         max-height: calc(100vh - 70px);
         margin: 0;
     }
+}
+
+.createInput {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.createInput .field {
+    width: 60%;
+}
+
+.createInput .control button {
+    background-color: #E26B28;
+    color: white;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
 }

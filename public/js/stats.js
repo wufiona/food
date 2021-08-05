@@ -1,6 +1,22 @@
+const userProfile = {
+    displayName: null,
+    region: null,
+    blurb: null,
+};
+
+const profileDisplayName = document.querySelector("#profileDisplayName")
+
+// Modal input
+const modalDisplayName = document.querySelector("#displayName")
+const modalRegion = document.querySelector("#region")
+const modalBlurb = document.querySelector("#blurb")
+
+//const profileRegion = document.querySelector("#profileRegion")
+//const profileBlurb = document.querySelector("#profileBlurb")
+
 window.onload = event => {
     // retains user state between html pages.
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             console.log('Logged in as: ' + user.displayName);
             const googleUserId = user.uid;
@@ -9,9 +25,32 @@ window.onload = event => {
                 const posts = snapshot.val();
                 calculateStats(posts);
             })
+
+            // Update user profile info
+            const profileRef = firebase.database().ref(`users/${googleUserId}/profile`);
+            profileRef.on("value", (snapshot) => {
+                const profileItem = snapshot.val();
+                if (profileItem !== null) {
+                    console.log("found profile!!")
+                    console.log(profileItem)
+                    userProfile.displayName = profileItem["displayName"];
+                    userProfile.region = profileItem["region"]
+                    userProfile.blurb = profileItem["blurb"]
+
+                    profileDisplayName.innerHTML = userProfile.displayName
+                    modalDisplayName.value = userProfile.displayName
+                    modalRegion.value = userProfile.region
+                    modalBlurb.value = userProfile.blurb
+                    
+                    console.log(profileItem["displayName"])
+                    console.log(profileItem["region"])
+                    console.log(profileItem["blurb"])
+                }
+            })
+
         } else {
             // if not logged in, navigate back to login page.
-            window.location = 'index.html'; 
+            window.location = 'index.html';
         };
     });
 }
@@ -54,8 +93,8 @@ function calculateStats(posts) {
     }
     console.log(highestMood);
     let uniqueLocations = locations.length;
-    let avgRating = sumRatings/numberOfPosts;
-    let avgCost = sumCosts/numberOfPosts;
+    let avgRating = sumRatings / numberOfPosts;
+    let avgCost = sumCosts / numberOfPosts;
     console.log(avgRating);
     let star = "⭐️"
     const cardHolder = document.querySelector("#statsCardHolder");
@@ -114,4 +153,19 @@ function calculateStats(posts) {
             </div> 
             </div>
         </div>`;
+}
+
+function toggleEditProfileModal() {
+    const editProfileModal = document.querySelector("#editProfileModal");
+    editProfileModal.classList.toggle('is-active');
+}
+
+function signOut() {
+   firebase.auth().signOut()
+	
+   .then(function() {
+      console.log('Signout Succesfull')
+   }, function(error) {
+      console.log('Signout Failed')  
+   });
 }

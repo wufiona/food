@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Food</title>
@@ -17,8 +18,12 @@
     <script defer src="js/stats.js"></script>
 
     <!-- verification of sign-in goes here -->
-  </head>
-  <body id="contentContainer">
+
+    <!-- Font awesome icons: remember to add this to every file that uses icons -->
+    <script src="https://kit.fontawesome.com/957b86070a.js" crossorigin="anonymous"></script>
+</head>
+
+<body id="contentContainer">
     <div id="sidebar">
         <div class="sidebarLogo">
             <img src="https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png" />
@@ -26,13 +31,15 @@
         <a class="sidebarItem" href="home.html">Home</a>
         <a class="sidebarItem isActive">Profile</a>
         <a class="sidebarItem" href="createPost.html">Create</a>
-        <a class="sidebarItem">Explore</a>
+        <a class="sidebarItem" href="random.html">Explore</a>
+        <a class="sidebarItem" onclick="signOut()">Sign Out</a>
     </div>
     <div id="content">
         <nav id="navbar" class="nav">
             <div class="nav-left">
                 <div class="image is-48x48">
-                    <img class="is-rounded" src="https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png" />
+                    <img class="is-rounded"
+                        src="https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png" />
                 </div>
             </div>
             <p class="nav-right searchWrapper control has-icons-left">
@@ -43,21 +50,24 @@
             </p>
         </nav>
         <div id="userHeader">
-            <img src="https://cdn.glitch.com/8d7c1443-e6ae-466c-a2fb-143582521dfd%2F5776aa96-7a4d-4bc6-9323-d2a7f2f84359.image.png?v=1628117169685" />
-            <img id="pfImage" src="https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png" class="pfPic">
+            <img
+                src="https://cdn.glitch.com/8d7c1443-e6ae-466c-a2fb-143582521dfd%2F5776aa96-7a4d-4bc6-9323-d2a7f2f84359.image.png?v=1628117169685" />
+            <img id="pfImage" src="https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png"
+                class="pfPic">
             <div id="pfName">
-                <p class="title name">
-                    First Last
+                <p id="profileDisplayName" class="title name">
+                    Loading...
                 </p>
-                <p class="subtitle username">
+                <p id="profileUsername" class="subtitle username">
                     @username
                 </p>
             </div>
-            <img src="https://cdn.glitch.com/8d7c1443-e6ae-466c-a2fb-143582521dfd%2Fe27fcfdd-d116-40c9-ab46-4efbcea3938a.image.png?v=1628119010360" id="editImage" />
+            <button id="editButton" class="button is-primary" onClick="toggleEditProfileModal()">
+                <span class="icon"><i class="fas fa-edit"></i></span>
+            </button>
         </div>
         <div class="sidebyside">
-            <div id="statsCardHolder" class="columns is-centered">
-
+            <div id="statsCardHolder">
             </div>
             <div id="challengesHolder">
 
@@ -65,5 +75,38 @@
         </div>
         <!-- Your HTML goes here! -->
     </div>
-  </body>
+    <!-- Edit profile modal -->
+        <div id="editProfileModal" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <section class="modal-card-body">
+                    <div class="field">
+                        <label class="label">display name</label>
+                        <div class="control">
+                            <input class="input is-medium" type="text" id="displayName" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">general region</label>
+                        <div class="control">
+                            <input class="input is-medium" type="text" id="region" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">blurb</label>
+                        <div class="control">
+                            <textarea class="textarea is-medium" id="blurb"></textarea>
+                        </div>
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button"onclick="editProfile()">
+                        Edit Profile
+                    </button>
+                    <button class="button" onclick="toggleEditProfileModal()">Cancel</button>
+                </footer>
+            </div>
+        </div>
+</body>
+
 </html>

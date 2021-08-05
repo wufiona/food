@@ -97,3 +97,13 @@ const handlePostSubmit = () => {
             alert("enter whole number rating between 1 and 5");
         }
 };
+
+function signOut() {
+   firebase.auth().signOut()
+	
+   .then(function() {
+      console.log('Signout Succesfull')
+   }, function(error) {
+      console.log('Signout Failed')  
+   });
+}
