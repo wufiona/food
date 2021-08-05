@@ -71,7 +71,7 @@ function calculateStats(posts) {
     let numberOfPosts = 0;
     let sumRatings = 0;
     let sumCosts = 0;
-    let locations = [];
+    let resturaunts = [];
     let moodDict = {};
     for (let visibility in posts) {
         for (let post in posts[visibility]) {
@@ -79,12 +79,12 @@ function calculateStats(posts) {
             sumRatings += parseInt(posts[visibility][post].rating);
             sumCosts += parseInt(posts[visibility][post].cost);
             numberOfPosts += 1;
-            if (locations.includes(posts[visibility][post].location)) {
+            if (resturaunts.includes(posts[visibility][post].title)) {
                 console.log("in");
             } else {
-                console.log(locations);
-                console.log(posts[visibility][post].location);
-                locations.push(posts[visibility][post].location);
+                console.log(resturaunts);
+                console.log(posts[visibility][post].title);
+                resturaunts.push(posts[visibility][post].title);
             }
             let mood = posts[visibility][post].mood;
             if (mood in moodDict) {
@@ -104,7 +104,7 @@ function calculateStats(posts) {
         }
     }
     console.log(highestMood);
-    let uniqueLocations = locations.length;
+    let uniqueRes = resturaunts.length;
     let avgRating = sumRatings / numberOfPosts;
     let avgCost = sumCosts / numberOfPosts;
     console.log(avgRating);
@@ -148,8 +148,8 @@ function calculateStats(posts) {
             <!-- CARD -->
             <div class="card-content">
                 <div class="content">
-                    <p class="title is-1">${uniqueLocations}</p>
-                    <p class="subtitle is-6">location(s)</p>
+                    <p class="title is-1">${uniqueRes}</p>
+                    <p class="subtitle is-6">restaurant(s)</p>
                 </div>
             </div> 
             </div>

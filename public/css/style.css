@@ -240,6 +240,11 @@ border-radius: 50px;
     display: flex;
     justify-content: space-evenly;
     width: 100%;
+    flex-wrap: wrap;    
+}
+
+iframe {
+    margin: 15px;
 }
 
 #challengesHolder {
