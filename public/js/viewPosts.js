@@ -60,11 +60,39 @@ window.onload = event => {
     });
 }
 
-function displayPosts(posts) {
+function displayPosts(posts, isSearchResults = false) {
     console.log(posts);
     const cardHolder = document.querySelector("#cardHolder")
     cardHolder.innerHTML = "";
     let star = "⭐️";
+
+    let isEmpty = posts == null ? true : Object.entries(posts).length == 0 ? true : false;
+
+    if (isEmpty) {
+        cardHolder.innerHTML = `
+        <div class="hero mt-6">
+            <p class="title">Hey Foodie!</p>
+            <p>
+                ${isSearchResults ? 
+                    `Looks like there are no posts that <b>matches your search results</b> in the Food Feed. You can make one
+                    in the <a href="/createPost.html">Create Page</a> or <a onclick="resetSearch()">reset your search results</a>!` 
+                    :
+                    `Looks like there are no posts in your Food Feed so far. You can make one
+                    in the <a href="/createPost.html">Create Page</a>!` 
+                }
+            </p>
+            <p class="has-text-left mt-4">
+                <a class="button is-medium" href="/createPost.html">
+                    Create Post
+                </a>
+                <a class="button is-medium" ${isSearchResults ? `onclick="resetSearch()"` :`href="/stats.html"`}>
+                    ${isSearchResults ? "Clear Search" : "Go to Profile"}
+                </a>
+            </p>
+        </div>
+        `
+    }
+
     for (let visibility in posts) {
         for (let post in posts[visibility]) {
             console.log(posts[visibility][post].pictures && posts[visibility][post].pictures["0"] ? posts[visibility][post].pictures["0"] : "https://source.unsplash.com/1600x900/?food")
@@ -101,11 +129,7 @@ function displayPosts(posts) {
                             <div class="right-images">
                             <figure class="image">
                                 <img
-<<<<<<< HEAD
-                                src=${posts[visibility][post].pictures && posts[visibility][post].pictures["1"] ? posts[visibility][post].pictures["1"] : "https://source.unsplash.com/1600x900/?food"}
-=======
                                 src="https://i.pinimg.com/originals/89/8f/b5/898fb51362e50765aeb902b82f781d99.jpg"
->>>>>>> b203e6481a2688389d5600cb6e7479a1b6a6ace3
                                 alt="Placeholder image"
                                 />
                             </figure>
@@ -319,64 +343,14 @@ function search() {
         const posts = snapshot.val();
         console.log(posts);
         cardHolder.innerHTML = "";
+        let isSearch = false;
         if (search === "") {
             buttonHolder.innerHTML = "";
         } else {
             buttonHolder.innerHTML = `<button class="button" id="clear" onclick="resetSearch()">clear search</button>`;
+            isSearch = true;
         }
-        for (let visibility in posts) {
-            for (let post in posts[visibility]) {
-                console.log("posts pictures?" + posts[visibility][post].pictures[1]);
-                if (posts[visibility][post].title.includes(search) || posts[visibility][post].description.includes(search) || posts[visibility][post].location.includes(search)) {
-                    cardHolder.innerHTML +=
-                        `
-                            <div class="card">
-                                <div class="card-content">
-                                <div class="images">
-                                    <div class="left-image">
-                                    <figure class="image">
-                                        <img
-                                        src=${posts[visibility][post].pictures[1] ? posts[visibility][post].pictures[1] :"https://source.unsplash.com/1600x900/?food"}
-                                        alt="Placeholder image"
-                                        />
-                                    </figure>
-                                    </div>
-                                    <div class="right-images">
-                                    <figure class="image">
-                                        <img
-                                        src=${posts[visibility][post].pictures[1] ? posts[visibility][post].pictures[1] :"https://source.unsplash.com/1600x900/?food"}
-                                        alt="Placeholder image"
-                                        />
-                                    </figure>
-                                    <figure class="image">
-                                        <img
-                                        src=${posts[visibility][post].pictures[2] ? posts[visibility][post].pictures[2] : "https://source.unsplash.com/1600x900/?food"}
-                                        alt="Placeholder image"
-                                        />
-                                    </figure>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <div class="media-content">
-                                    <br />
-                                    <p class="removeMarginB title is-4">${posts[visibility][post].title}</p>
-                                    <p class="is-6">${posts[visibility][post].location}</p>
-                                    <p class="is-6">
-                                        Rating: ${star.repeat(posts[visibility][post].rating)} | Cost: $${posts[visibility][post].cost} | Mood: ${posts[visibility][post].mood}
-                                    </p>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    ${posts[visibility][post].description}
-                                    <br />
-                                    <br />
-                                    <time datetime="${posts[visibility][post].date}">${posts[visibility][post].date}</time>
-                                    <button class="button" onclick="editCard('${visibility}', '${post}')">edit</button>
-                                </div>
-                            </div>`
-                }  
-            }
-        }
+        displayPosts(posts, isSearch);
     });
 }
 
