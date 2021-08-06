@@ -32,7 +32,7 @@ window.onload = event => {
 function findRandomPost() {
     var allUserIds = Object.keys(users);
     var randomUser = findRandomUser(allUserIds);
-    displayRandomUser(users[randomUser]["profile"]);
+    displayRandomUser(users[randomUser]["profile"], users[randomUser]["posts"]);
     userPosts =  users[randomUser]["posts"]["public"];
     var allPostIds = Object.keys(userPosts);
     console.log(userPosts);
@@ -104,7 +104,7 @@ function displayPost(post) {
       </div>`;
 }
 
-function displayRandomUser(profile) {
+function displayRandomUser(profile, userPostsAll) {
     console.log(profile);
     const profileHolder = document.querySelector("#personInfo")
     let star = "⭐️";
@@ -120,12 +120,14 @@ function displayRandomUser(profile) {
                         </div>
                     </div>
                     <p class="subtitle"> ${profile.blurb}</p>
-                    <p class="subtitle">join date!</p>
+                    <div id="challengesHolderRandomUser">
+                    </div>
                 </div>
                 <div class="center">
                         <button class="button" id="refreshExplore" onclick="findRandomPost()"> Explore again! </button>
                 </div>           
 `;
+calculateStats(userPostsAll);
 }
 
 
@@ -137,4 +139,76 @@ function signOut() {
    }, function(error) {
       console.log('Signout Failed')  
    });
+}
+
+function calculateStats(posts) {
+    let numberOfPosts = 0;
+    let sumRatings = 0;
+    let sumCosts = 0;
+    let resturaunts = [];
+    let moodDict = {};
+    let fruity = false;
+    let drinky = false;
+    let spicy = false;
+    for (let visibility in posts) {
+        for (let post in posts[visibility]) {
+            console.log(posts[visibility][post].rating)
+            sumRatings += parseInt(posts[visibility][post].rating);
+            sumCosts += parseInt(posts[visibility][post].cost);
+            numberOfPosts += 1;
+            if (resturaunts.includes(posts[visibility][post].title)) {
+                console.log("in");
+            } else {
+                console.log(resturaunts);
+                console.log(posts[visibility][post].title);
+                resturaunts.push(posts[visibility][post].title);
+            }
+            let mood = posts[visibility][post].mood;
+            if (mood in moodDict) {
+                moodDict[mood] += 1;
+            } else {
+                moodDict[mood] = 1;
+            }
+            if (posts[visibility][post].title.includes("fruit") || posts[visibility][post].description.includes("fruit") || posts[visibility][post].location.includes("fruit")) {
+                fruity = true;
+            }
+            if (posts[visibility][post].title.includes("drink") || posts[visibility][post].description.includes("drink") || posts[visibility][post].location.includes("drink")) {
+                drinky = true;
+            }
+            if (posts[visibility][post].title.includes("spicy") || posts[visibility][post].description.includes("spicy") || posts[visibility][post].location.includes("spicy")) {
+                spicy = true;
+            }
+        }
+    }
+    let highestMood = "";
+    let highestMoodCount = 0;
+    console.log(moodDict);
+    for (let mood in moodDict) {
+        if (moodDict[mood] > highestMoodCount) {
+            highestMood = mood;
+            highestMoodCount = moodDict[mood];
+        }
+    }
+    console.log(highestMood);
+    let uniqueRes = resturaunts.length;
+    let avgRating = sumRatings / numberOfPosts;
+    let avgCost = sumCosts / numberOfPosts;
+    console.log(avgRating);
+    let star = "⭐️";
+    const challengesHolder = document.querySelector("#challengesHolderRandomUser");
+    challengesHolder.innerHTML += `<img src="images/badges/welcomeBadge.png" />`
+    if (avgCost < 20) {
+        challengesHolder.innerHTML += `<img src="images/badges/superSaver.png" />`
+    } else {
+        challengesHolder.innerHTML += `<img src="images/badges/superSpender.png" />`
+    }
+    if (fruity) {
+        challengesHolder.innerHTML += `<img src="images/badges/fruitTastic.png" />`
+    }
+    if (drinky) {
+        challengesHolder.innerHTML += `<img src="images/badges/drinkExpert.png" />`
+    }
+    if (spicy) {
+        challengesHolder.innerHTML += `<img src="images/badges/verySpicy.png" />`
+    }
 }
