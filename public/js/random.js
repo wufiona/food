@@ -46,7 +46,7 @@ function findRandomUser(allUserIds){
     do {
         randomUser = allUserIds[Math.floor(Math.random() * (allUserIds.length))]
         console.log("finding randomUser");
-    } while (randomUser == googleUserId);
+    } while (randomUser == googleUserId || !users[randomUser]["posts"] || !users[randomUser]["posts"]["public"]);
     return (randomUser);
 }
 
