@@ -12,6 +12,7 @@ button {
 
 .card {
     margin: 5px;
+    z-index: 2;
 }
 
 /* Overall layout */
@@ -497,7 +498,7 @@ iframe {
 
 
 /* Rotating globe */
-.globe {
+#globe {
   border: 2px solid #F0A073;
   border-radius: 50%;
   height: 140px;
@@ -507,15 +508,13 @@ iframe {
   top: 50%;
   transform: translate(-50%, -50%);
   width: 140px;
-  
-  
 }
 
-.globe svg {
+#globe svg {
     animation: rotation 5s linear 0s infinite;
 }
 
-.globe svg path {
+#globe svg path {
     stroke: #F0A073;
 }
 
