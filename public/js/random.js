@@ -56,52 +56,35 @@ function displayPost(post) {
     let star = "⭐️";
     cardHolder.innerHTML ="";
     cardHolder.innerHTML =
-                `      <div class="card-big">
-        <div class="card-content">
-          <div class="images">
-            <div class="left-image-big">
-              <figure class="image">
-                <img
-                  src=${post.pictures && post.pictures["0"] ? post.pictures["0"] : "https://source.unsplash.com/1600x900/?food"}
-                  alt="Placeholder image"
-                />
-              </figure>
+        `
+            <div class="card-big">
+            <div class="card-content">
+                <div class="images">
+                ${post.pictures ? getImages(post.pictures.length , post.pictures) : ""}
+                </div>
+                <div class="media">
+                <div class="media-content">
+                    <br />
+                    <p class="removeMarginB title is-1">
+                    ${post.title}
+                    </p>
+                    <p class="is-1">${post.location}</p>
+                    <p class="is-1">
+                    Rating: ${star.repeat(post.rating)} | Cost: $${post.cost} | Mood:
+                    ${post.mood}
+                    </p>
+                </div>
+                </div>
+                <div class="content">
+                ${post.description}
+                <br />
+                <br />
+                <time datetime="${post.date}">${post.date}</time>
+                </div>
             </div>
-            <div class="right-images-big">
-              <figure class="image">
-                <img
-                  src=${post.pictures && post.pictures["1"] ? post.pictures["1"] : "https://source.unsplash.com/1600x900/?food"}
-                 alt="Placeholder image"
-                />
-              </figure>
-              <figure class="image">
-                <img
-                  src=${post.pictures && post.pictures["2"] ? post.pictures["2"] : "https://source.unsplash.com/1600x900/?food"}
-                  alt="Placeholder image"
-                />
-              </figure>
             </div>
-          </div>
-          <div class="media">
-            <div class="media-content">
-              <br />
-              <p class="removeMarginB title is-1">
-                ${post.title}
-              </p>
-              <p class="is-1">${post.location}</p>
-              <p class="is-1">
-                 Rating: ${star.repeat(post.rating)} | Cost: $${post.cost} | Mood: ${post.mood}
-              </p>
-            </div>
-          </div>
-          <div class="content">
-            ${post.description}
-            <br />
-            <br />
-            <time datetime="${post.date}">${post.date}</time>
-          </div>
-        </div>
-      </div>`;
+
+        `;
 }
 
 function displayRandomUser(profile, userPostsAll) {
@@ -216,4 +199,88 @@ function calculateStats(posts) {
     if (spicy) {
         challengesHolder.innerHTML += `<img src="images/badges/verySpicy.png" />`
     }
+}
+
+function getImages(numberOfImages, picturesArray) {
+    console.log(picturesArray)
+    console.log(numberOfImages)
+  if (numberOfImages == 3) {
+    return ` 
+      <div class="left-image-big">
+        <figure class="image">
+          <img src=${
+            picturesArray &&
+            picturesArray["0"]
+              ? picturesArray["0"]
+              : "https://source.unsplash.com/1600x900/?food"
+          } alt="Placeholder image"
+          />
+        </figure>
+      </div>
+      <div class="right-images-big">
+        <figure class="image">
+          <img src=${
+            picturesArray &&
+            picturesArray["1"]
+              ? picturesArray["1"]
+              : "https://source.unsplash.com/1600x900/?food"
+          } alt="Placeholder image"
+          />
+        </figure>
+        <figure class="image">
+          <img src=${
+            picturesArray &&
+            picturesArray["2"]
+              ? picturesArray["2"]
+              : "https://source.unsplash.com/1600x900/?food"
+          } alt="Placeholder image"
+          />
+        </figure>
+      </div>
+    `;
+  }
+  if (numberOfImages == 2) {
+    return `
+      <div class="left-image-big">
+        <figure class="image">
+          <img src=${
+            picturesArray &&
+            picturesArray["0"]
+              ? picturesArray["0"]
+              : "https://source.unsplash.com/1600x900/?food"
+          } alt="Placeholder image"
+          />
+        </figure>
+      </div>
+      <div class="right-images-big-two">
+        <figure class="image">
+          <img src=${
+            picturesArray &&
+            picturesArray["1"]
+              ? picturesArray["1"]
+              : "https://source.unsplash.com/1600x900/?food"
+          } alt="Placeholder image"
+          />
+        </figure>
+      </div>
+    `;
+  }
+  if (numberOfImages == 1) {
+    return `
+      <div class="left-image-big-one">
+        <figure class="image">
+          <img src=${
+            picturesArray &&
+            picturesArray["0"]
+              ? picturesArray["0"]
+              : "https://source.unsplash.com/1600x900/?food"
+          } alt="Placeholder image"
+          />
+        </figure>
+      </div>
+`;
+  } 
+  else {
+    return "";
+  }
 }

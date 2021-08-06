@@ -95,7 +95,8 @@ function displayPosts(posts, isSearchResults = false) {
 
     for (let visibility in posts) {
         for (let post in posts[visibility]) {
-            console.log(posts[visibility][post].pictures && posts[visibility][post].pictures["0"] ? posts[visibility][post].pictures["0"] : "https://source.unsplash.com/1600x900/?food")
+            console.log(posts[visibility][post].pictures ? posts[visibility][post].pictures.length: "no pics")
+
             cardHolder.innerHTML +=
                 // `<div class="is-half mt-4 card">
                 //     <!-- CARD -->
@@ -115,54 +116,122 @@ function displayPosts(posts, isSearchResults = false) {
                 //     </div>
                 // </div>`;
                 `
-                    <div class="card">
-                        <div class="card-content">
-                        <div class="images">
-                            <div class="left-image">
-                            <figure class="image">
-                                <img
-                                src=${posts[visibility][post].pictures && posts[visibility][post].pictures["0"] ? posts[visibility][post].pictures["0"] : "https://source.unsplash.com/1600x900/?food"}
-                                alt="Placeholder image"
-                                />
-                            </figure>
-                            </div>
-                            <div class="right-images">
-                            <figure class="image">
-                                <img
-                                src="https://i.pinimg.com/originals/89/8f/b5/898fb51362e50765aeb902b82f781d99.jpg"
-                                alt="Placeholder image"
-                                />
-                            </figure>
-                            <figure class="image">
-                                <img
-                                src=${posts[visibility][post].pictures && posts[visibility][post].pictures["2"] ? posts[visibility][post].pictures["2"] : "https://source.unsplash.com/1600x900/?food"}
-                                alt="Placeholder image"
-                                />
-                            </figure>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-content">
-                            <br />
-                            <p class="removeMarginB title is-4">${posts[visibility][post].title}</p>
-                            <p class="is-6">${posts[visibility][post].location}</p>
-                            <p class="is-6">
-                                Rating: ${star.repeat(posts[visibility][post].rating)} | Cost: $${posts[visibility][post].cost} | Mood: ${posts[visibility][post].mood}
-                            </p>
-                            </div>
-                        </div>
-                        <div class="content">
-                            ${posts[visibility][post].description}
-                            <br />
-                            <br />
-                            <time datetime="${posts[visibility][post].date}">${posts[visibility][post].date}</time>
-                            <button class="button" onclick="editCard('${visibility}', '${post}')">edit</button>
-                        </div>
-                        </div>
-                    `
+                <div class="card">
+                <div class="card-content">
+                    <div class="images">
+                        ${posts[visibility][post].pictures ?
+                        getImages(posts[visibility][post].pictures.length ,
+                        posts[visibility][post].pictures) : ""}
+                    </div>
+                    <div class="media">
+                    <div class="media-content">
+                        <br />
+                        <p class="removeMarginB title is-4">${posts[visibility][post].title}</p>
+                        <p class="is-6">${posts[visibility][post].location}</p>
+                        <p class="is-6">
+                        Rating: ${star.repeat(posts[visibility][post].rating)} | Cost:
+                        $${posts[visibility][post].cost} | Mood:
+                        ${posts[visibility][post].mood}
+                        </p>
+                    </div>
+                    </div>
+                    <div class="content">
+                    ${posts[visibility][post].description}
+                    <br />
+                    <br />
+                    <time datetime="${posts[visibility][post].date}"
+                        >${posts[visibility][post].date}</time
+                    >
+                    <button class="button" onclick="editCard('${visibility}', '${post}')">
+                        edit
+                    </button>
+                    </div>
+                </div>
+                </div>
+
+                `
         }
     }
 }
+
+function getImages(numberOfImages, picturesArray) {
+    console.log("inside getImages, there are " + numberOfImages)
+  if (numberOfImages === 3) {
+    return `
+      <div class="left-image">
+        <figure class="image">
+          <img src=${
+            picturesArray && picturesArray["0"]
+              ? picturesArray["0"]
+              : "https://source.unsplash.com/1600x900/?food"
+          } alt="Placeholder image"
+          />
+        </figure>
+      </div>
+      <div class="right-images">
+        <figure class="image">
+          <img src=${
+            picturesArray && picturesArray["1"]
+              ? picturesArray["1"]
+              : "https://source.unsplash.com/1600x900/?food"
+          } alt="Placeholder image"
+          />
+        </figure>
+        <figure class="image">
+          <img src=${
+            picturesArray && picturesArray["2"]
+              ? picturesArray["2"]
+              : "https://source.unsplash.com/1600x900/?food"
+          } alt="Placeholder image"
+          />
+        </figure>
+      </div>
+    `;
+  }
+  if (numberOfImages === 2) {
+    return `
+      <div class="left-image">
+        <figure class="image">
+          <img src=${
+            picturesArray && picturesArray["0"]
+              ? picturesArray["0"]
+              : "https://source.unsplash.com/1600x900/?food"
+          } alt="Placeholder image"
+          />
+        </figure>
+      </div>
+      <div class="right-images-two">
+        <figure class="image">
+          <img src=${
+            picturesArray && picturesArray["1"]
+              ? picturesArray["1"]
+              : "https://source.unsplash.com/1600x900/?food"
+          } alt="Placeholder image"
+          />
+        </figure>
+      </div>
+
+`;
+  }
+  if (numberOfImages === 1) {
+    return `
+    
+      <div class="left-image-one">
+        <figure class="image">
+          <img src=${
+            picturesArray && picturesArray["0"]
+              ? picturesArray["0"]
+              : "https://source.unsplash.com/1600x900/?food"
+          } alt="Placeholder image"
+          />
+        </figure>
+      </div>
+    `;
+  } else {
+    return "";
+  }
+}
+
 
 function editCard(private, id) {
     console.log(private);
@@ -171,9 +240,10 @@ function editCard(private, id) {
     const notesRef = firebase.database().ref(`users/${googleUserId}/posts/${private}`);
     editNoteModal.classList.toggle('is-active');
     const saveEditBtn = document.querySelector('#saveEdit');
+    let details;
     notesRef.on('value', (snapshot) => {
         const data = snapshot.val();
-        const details = data[id];
+        details = data[id];
         // 1. Capture the form data
         console.log(details);
         document.querySelector('#title').value = details.title;
@@ -185,7 +255,7 @@ function editCard(private, id) {
         document.querySelector('#location').value = details.location;
         // need to change privacy or update it        
     });
-    saveEditBtn.onclick = handleSaveEdit.bind(this, private, id);
+    saveEditBtn.onclick = handleSaveEdit.bind(this, details, private, id);
     if (private === "private") {
         document.querySelector("#privateOp").checked = true;
     } else {
@@ -200,7 +270,7 @@ function closeEditModal() {
     editNoteModal.classList.toggle('is-active');
 }
 
-function handleSaveEdit(private, id) {
+function handleSaveEdit(details, private, id) {
     const title = document.querySelector('#title');
     const cost = document.querySelector('#cost');
     const date = document.querySelector('#date');
@@ -227,6 +297,7 @@ function handleSaveEdit(private, id) {
         mood: mood.value,
         description: description.value,
         location: location.value,
+        pictures: details.pictures,
     }
 
     // 2. Validate Data

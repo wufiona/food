@@ -561,3 +561,60 @@ iframe {
     width: 45%;
     height: 45%;
 }
+
+
+.left-image-one {
+  width: 370px;
+}
+
+.right-images-two {
+  width: 130px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+
+.right-images-two .image img {
+  height: 200px;
+}
+
+
+
+
+.left-image-big-one {
+  width: 760px;
+}
+
+.right-images-big-two {
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.right-images-big-two {
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#cardHolder .card-big img {
+  border-radius: 5px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.left-image-big-one .image img {
+  height: 400px;
+}
+
+
+.right-images-big-two .image img {
+  height: 400px;
+}
+
+
