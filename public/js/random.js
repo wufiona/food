@@ -106,6 +106,8 @@ function displayPost(post) {
 
 function displayRandomUser(profile) {
     console.log(profile);
+    const globe = document.querySelector("#globe")
+    globe.classList.toggle("is-hidden");
     const profileHolder = document.querySelector("#personInfo")
     let star = "⭐️";
     profileHolder.innerHTML ="";
