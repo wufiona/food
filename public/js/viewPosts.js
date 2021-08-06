@@ -60,13 +60,58 @@ window.onload = event => {
     });
 }
 
-function displayPosts(posts, isSearchResults = false) {
+function displayPosts(posts, isSearchResults = false, search = "") {
     console.log(posts);
     const cardHolder = document.querySelector("#cardHolder")
     cardHolder.innerHTML = "";
     let star = "⭐️";
 
-    let isEmpty = posts == null ? true : Object.entries(posts).length == 0 ? true : false;
+    let isEmpty = true;
+
+    for (let visibility in posts) {
+        for (let post in posts[visibility]) {
+            console.log(posts[visibility][post].pictures ? posts[visibility][post].pictures.length: "no pics")
+            if ((posts[visibility][post].title + posts[visibility][post].location + posts[visibility][post].mood + posts[visibility][post].description).includes(search)) {
+                isEmpty = false;
+                cardHolder.innerHTML +=
+                    `
+                    <div class="card">
+                    <div class="card-content">
+                        <div class="images">
+                            ${posts[visibility][post].pictures ?
+                            getImages(posts[visibility][post].pictures.length ,
+                            posts[visibility][post].pictures) : ""}
+                        </div>
+                        <div class="media">
+                        <div class="media-content">
+                            <br />
+                            <p class="removeMarginB title is-4">${posts[visibility][post].title}</p>
+                            <p class="is-6">${posts[visibility][post].location}</p>
+                            <p class="is-6">
+                            Rating: ${star.repeat(posts[visibility][post].rating)} | Cost:
+                            $${posts[visibility][post].cost} | Mood:
+                            ${posts[visibility][post].mood}
+                            </p>
+                        </div>
+                        </div>
+                        <div class="content">
+                        ${posts[visibility][post].description}
+                        <br />
+                        <br />
+                        <time datetime="${posts[visibility][post].date}"
+                            >${posts[visibility][post].date}</time
+                        >
+                        <button class="button" onclick="editCard('${visibility}', '${post}')">
+                            edit
+                        </button>
+                        </div>
+                    </div>
+                    </div>
+
+                    `
+            }
+        }
+    }
 
     if (isEmpty) {
         cardHolder.innerHTML = `
@@ -91,66 +136,6 @@ function displayPosts(posts, isSearchResults = false) {
             </p>
         </div>
         `
-    }
-
-    for (let visibility in posts) {
-        for (let post in posts[visibility]) {
-            console.log(posts[visibility][post].pictures ? posts[visibility][post].pictures.length: "no pics")
-
-            cardHolder.innerHTML +=
-                // `<div class="is-half mt-4 card">
-                //     <!-- CARD -->
-                //     <div class="card-content">
-                //         <div class="content">
-                //             <p class="title is-4">${posts[visibility][post].title}</p>
-                //             <p class="title is-5">${posts[visibility][post].date}</p>
-                //             <p class="title is-5">${posts[visibility][post].cost}</p>
-                //             <p class="title is-5">${posts[visibility][post].rating}</p>
-                //             <img src="${posts[visibility][post].picture}" />
-                //             <p class="title is-5">${posts[visibility][post].mood}</p>
-                //             <p class="title is-5">${posts[visibility][post].description}</p>
-                //             <p class="title is-5">${posts[visibility][post].location}</p>
-                //             <button class="button" onclick="editCard('${visibility}', '${post}')">edit</button>
-                //         </div>
-                //     </div> 
-                //     </div>
-                // </div>`;
-                `
-                <div class="card">
-                <div class="card-content">
-                    <div class="images">
-                        ${posts[visibility][post].pictures ?
-                        getImages(posts[visibility][post].pictures.length ,
-                        posts[visibility][post].pictures) : ""}
-                    </div>
-                    <div class="media">
-                    <div class="media-content">
-                        <br />
-                        <p class="removeMarginB title is-4">${posts[visibility][post].title}</p>
-                        <p class="is-6">${posts[visibility][post].location}</p>
-                        <p class="is-6">
-                        Rating: ${star.repeat(posts[visibility][post].rating)} | Cost:
-                        $${posts[visibility][post].cost} | Mood:
-                        ${posts[visibility][post].mood}
-                        </p>
-                    </div>
-                    </div>
-                    <div class="content">
-                    ${posts[visibility][post].description}
-                    <br />
-                    <br />
-                    <time datetime="${posts[visibility][post].date}"
-                        >${posts[visibility][post].date}</time
-                    >
-                    <button class="button" onclick="editCard('${visibility}', '${post}')">
-                        edit
-                    </button>
-                    </div>
-                </div>
-                </div>
-
-                `
-        }
     }
 }
 
@@ -421,7 +406,7 @@ function search() {
             buttonHolder.innerHTML = `<button class="button" id="clear" onclick="resetSearch()">clear search</button>`;
             isSearch = true;
         }
-        displayPosts(posts, isSearch);
+        displayPosts(posts, isSearch, search);
     });
 }
 
