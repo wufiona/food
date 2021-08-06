@@ -26,7 +26,7 @@ window.onload = event => {
     });
     const client = filestack.init("ALpTDTkiRLv9PTnWuopgCz");
     const options = {
-        fromSources: ["local_file_system","url", "imagesearch", "instagram", "unsplash"],
+        fromSources: ["local_file_system","url", "unsplash", "instagram"],
         accept: ["image/*"],
         displayMode: 'inline',
         container: '#fieldImage', 
