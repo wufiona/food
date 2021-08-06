@@ -332,7 +332,7 @@ function search() {
                                     <div class="left-image">
                                     <figure class="image">
                                         <img
-                                        src=${posts[visibility][post].pictures[1] ? posts[visibility][post].pictures[1] :"https://source.unsplash.com/1600x900/?food"}
+                                        src=${posts[visibility][post].pictures ? posts[visibility][post].pictures[0] :"https://source.unsplash.com/1600x900/?food"}
                                         alt="Placeholder image"
                                         />
                                     </figure>
@@ -340,13 +340,13 @@ function search() {
                                     <div class="right-images">
                                     <figure class="image">
                                         <img
-                                        src=${posts[visibility][post].pictures[1] ? posts[visibility][post].pictures[1] :"https://source.unsplash.com/1600x900/?food"}
+                                        src=${posts[visibility][post].pictures ? posts[visibility][post].pictures[1] :"https://source.unsplash.com/1600x900/?food"}
                                         alt="Placeholder image"
                                         />
                                     </figure>
                                     <figure class="image">
                                         <img
-                                        src=${posts[visibility][post].pictures[2] ? posts[visibility][post].pictures[2] : "https://source.unsplash.com/1600x900/?food"}
+                                        src=${posts[visibility][post].pictures ? posts[visibility][post].pictures[2] : "https://source.unsplash.com/1600x900/?food"}
                                         alt="Placeholder image"
                                         />
                                     </figure>
