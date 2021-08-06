@@ -107,7 +107,8 @@ function displayPost(post) {
 function displayRandomUser(profile, userPostsAll) {
     console.log(profile);
     const globe = document.querySelector("#globe")
-    globe.classList.toggle("is-hidden");
+    globe.classList.remove("is-hidden");
+
     const profileHolder = document.querySelector("#personInfo")
     let star = "⭐️";
     profileHolder.innerHTML ="";
@@ -129,6 +130,8 @@ function displayRandomUser(profile, userPostsAll) {
                         <button class="button" id="refreshExplore" onclick="findRandomPost()"> Explore again! </button>
                 </div>           
 `;
+globe.classList.add("is-hidden");
+
 calculateStats(userPostsAll);
 }
 
